@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tre volte all’alba — Analisi e ripasso per la LIM (1A LES)</title>
+  <!-- Google Fonts con fallback di sistema per massima leggibilità -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FAF8F5',
+            paper: '#F3EFE8',
+            card: '#FFFFFF',
+            ink: '#1E242B',
+            muted: '#525C68',
+            malcolm: {
+              DEFAULT: '#1E3A5F',
+              light: '#EAF0F6',
+              border: '#B8C9DE',
+              dark: '#142842'
+            },
+            maryjo: {
+              DEFAULT: '#C87D28',
+              light: '#FDF4E7',
+              border: '#ECCB9E',
+              dark: '#9E5F18'
+            },
+            dawn: {
+              border: '#E2DDD5',
+              highlight: '#FFF8EB'
+            }
+          },
+          fontFamily: {
+            sans: ['"Source Sans 3"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            serif: ['"Lora"', 'Georgia', 'Cambria', '"Times New Roman"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --base-font-size: 20px;
+    }
+
+    html {
+      font-size: var(--base-font-size);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #FAF8F5;
+      color: #1E242B;
+      font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Transizioni morbide per la proiezione alla LIM */
+    .fade-section {
+      animation: fadeIn 0.28s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stili per i capoversi interattivi */
+    .paragraph-card {
+      transition: all 0.25s ease;
+      border-left: 5px solid transparent;
+    }
+
+    .paragraph-card.highlighted {
+      background-color: #FFF8EB;
+      border-left-color: #C87D28;
+      box-shadow: 0 6px 20px -4px rgba(30, 58, 95, 0.08);
+      opacity: 1 !important;
+    }
+
+    .paragraph-card.dimmed {
+      opacity: 0.36;
+    }
+
+    .paragraph-card.dimmed:hover {
+      opacity: 0.72;
+    }
+
+    /* Pulsante tappa timeline */
+    .step-node {
+      transition: all 0.22s ease;
+    }
+
+    .step-node.active {
+      background-color: #1E3A5F;
+      color: #FFFFFF;
+      border-color: #1E3A5F;
+      box-shadow: 0 8px 20px -4px rgba(30, 58, 95, 0.28);
+      transform: translateY(-2px);
+    }
+
+    .step-node.active .step-badge {
+      background-color: #C87D28;
+      color: #FFFFFF;
+    }
+
+    /* SVG Linee Timeline */
+    .timeline-connector {
+      transition: opacity 0.3s ease, stroke-width 0.3s ease;
+    }
+
+    /* Ottimizzazione tocco LIM */
+    button {
+      touch-action: manipulation;
+      user-select: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-maryjo-light selection:text-ink">
+
+  <!-- BARRA DI NAVIGAZIONE SUPERIORE FISSA (STICKY PER LIM) -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-dawn-border shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Titolo compatto libro -->
+      <div class="flex items-center gap-3">
+        <div class="w-3 h-10 rounded-full bg-gradient-to-b from-malcolm via-maryjo to-amber-300 shrink-0" aria-hidden="true"></div>
+        <div>
+          <span class="block text-xs font-bold uppercase tracking-wider text-maryjo-dark">Alessandro Baricco • 1A LES</span>
+          <span class="font-serif font-bold text-lg sm:text-xl text-malcolm leading-tight">Tre volte all’alba</span>
+        </div>
+      </div>
+
+      <!-- 3 Schede di Navigazione Principali -->
+      <nav aria-label="Sezioni principali" class="flex flex-wrap items-center gap-2">
+        <button
+          id="nav-intro"
+          onclick="switchMainSection('intro')"
+          class="nav-tab min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 cursor-pointer"
+        >
+          1. Introduzione e Premessa
+        </button>
+        <button
+          id="nav-timeline"
+          onclick="switchMainSection('timeline')"
+          class="nav-tab min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 cursor-pointer"
+        >
+          2. La Mappa del Tempo
+        </button>
+        <button
+          id="nav-stories"
+          onclick="switchMainSection('stories')"
+          class="nav-tab min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 cursor-pointer"
+        >
+          3. I 3 Racconti
+        </button>
+      </nav>
+
+      <!-- Controllo Dimensione Testo LIM (A- / A / A+) -->
+      <div class="flex items-center bg-paper p-1.5 rounded-xl border border-dawn-border" role="group" aria-label="Dimensione del testo alla LIM">
+        <span class="text-xs font-semibold text-muted px-2 hidden xl:inline">Testo LIM:</span>
+        <button
+          id="font-sm"
+          onclick="setFontSize('sm')"
+          class="font-btn min-h-[44px] min-w-[46px] px-2.5 rounded-lg font-bold text-sm transition-all cursor-pointer"
+          title="Testo normale (18px)"
+        >
+          A-
+        </button>
+        <button
+          id="font-md"
+          onclick="setFontSize('md')"
+          class="font-btn min-h-[44px] min-w-[46px] px-2.5 rounded-lg font-bold text-base transition-all cursor-pointer"
+          title="Testo medio per LIM (20px)"
+        >
+          A
+        </button>
+        <button
+          id="font-lg"
+          onclick="setFontSize('lg')"
+          class="font-btn min-h-[44px] min-w-[46px] px-2.5 rounded-lg font-bold text-lg transition-all cursor-pointer"
+          title="Testo grande per LIM (24px)"
+        >
+          A+
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTENUTO PRINCIPALE -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+
+    <!-- ===================================================================== -->
+    <!-- SEZIONE 1: INTRODUZIONE E PREMESSA                                    -->
+    <!-- ===================================================================== -->
+    <section id="section-intro" class="fade-section space-y-8">
+      
+      <!-- Intestazione Hero -->
+      <div class="bg-white rounded-2xl p-6 sm:p-10 border border-dawn-border shadow-sm">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-maryjo-light border border-maryjo-border text-maryjo-dark font-semibold text-sm mb-4">
+          <span>Alessandro Baricco</span>
+          <span>•</span>
+          <span>Analisi e ripasso</span>
+          <span>•</span>
+          <span>Classe 1A LES</span>
+        </div>
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold text-malcolm tracking-tight mb-4">
+          Tre volte all’alba
+        </h1>
+        <p class="text-lg sm:text-xl text-ink/90 font-medium max-w-4xl leading-relaxed">
+          Una trilogia di racconti: come da titolo, iniziano tutti all’alba e più precisamente nella hall di un albergo.
+        </p>
+      </div>
+
+      <!-- Box Premessa dell'autore -->
+      <div class="bg-white rounded-2xl p-6 sm:p-10 border border-dawn-border shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 left-0 bottom-0 w-2.5 bg-gradient-to-b from-malcolm to-maryjo"></div>
+        <div class="pl-3 sm:pl-5">
+          <h2 class="text-sm font-bold uppercase tracking-widest text-maryjo-dark mb-3">
+            Premessa dell’autore
+          </h2>
+          <blockquote class="font-serif italic text-xl sm:text-2xl text-ink leading-relaxed">
+            «Queste pagine raccontano una storia verosimile che, tuttavia, non potrebbe mai accadere nella realtà. Raccontano infatti di due personaggi che si incontrano per tre volte, ma ogni volta è l’unica, e la prima, e l’ultima. Lo possono fare perché abitano un Tempo anomalo che inutilmente si cercherebbe nell’esperienza quotidiana. Lo allestiscono le narrazioni, di tanto in tanto, e questo è uno dei loro privilegi.»
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Pannello interattivo "Che vuol dire?" -->
+      <div class="bg-white rounded-2xl border border-dawn-border shadow-sm overflow-hidden">
+        <div class="p-6 sm:p-8 bg-paper/70 border-b border-dawn-border flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-malcolm">
+              Che vuol dire?
+            </h2>
+            <p class="text-sm sm:text-base text-muted mt-1">
+              Spiegazione guidata per la discussione in classe: clicca sui singoli punti o mostra il testo completo.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <button
+              id="btn-toggle-meaning"
+              onclick="toggleMeaningPanel()"
+              class="min-h-[48px] px-5 py-2.5 rounded-xl bg-malcolm text-white font-semibold hover:bg-malcolm-dark transition-all cursor-pointer shadow-sm"
+            >
+              Chiudi pannello
+            </button>
+            <button
+              id="btn-reveal-all-points"
+              onclick="revealAllMeaningPoints()"
+              class="min-h-[48px] px-5 py-2.5 rounded-xl bg-white text-malcolm border-2 border-malcolm font-semibold hover:bg-malcolm-light transition-all cursor-pointer"
+            >
+              Mostra tutti e 3 i punti
+            </button>
+          </div>
+        </div>
+
+        <div id="meaning-panel-body" class="p-6 sm:p-8 space-y-4">
+          <!-- Punto 1 -->
+          <div
+            id="meaning-point-1"
+            onclick="toggleSingleMeaningPoint(1)"
+            class="meaning-card rounded-xl border-2 border-malcolm-border bg-malcolm-light/40 p-5 sm:p-6 cursor-pointer transition-all hover:border-malcolm"
+          >
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-malcolm text-white font-bold flex items-center justify-center shrink-0">1</span>
+                <h3 class="font-bold text-lg sm:text-xl text-malcolm">Sfasature temporali e autonomia</h3>
+              </div>
+              <span id="meaning-icon-1" class="text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-malcolm">Aperto</span>
+            </div>
+            <p id="meaning-text-1" class="mt-4 text-ink leading-relaxed">
+              Le storie sono tre e sono autonome; tuttavia, vi ricorrono gli stessi due protagonisti, che a causa di sfasature temporali si rincontreranno, a loro insaputa, in età differenti.
+            </p>
+          </div>
+
+          <!-- Punto 2 -->
+          <div
+            id="meaning-point-2"
+            onclick="toggleSingleMeaningPoint(2)"
+            class="meaning-card rounded-xl border-2 border-dawn-border bg-paper/40 p-5 sm:p-6 cursor-pointer transition-all hover:border-maryjo"
+          >
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-maryjo text-white font-bold flex items-center justify-center shrink-0">2</span>
+                <h3 class="font-bold text-lg sm:text-xl text-maryjo-dark">Fabula, intreccio e lo sguardo del lettore</h3>
+              </div>
+              <span id="meaning-icon-2" class="text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-muted">Tocca per aprire</span>
+            </div>
+            <p id="meaning-text-2" class="hidden mt-4 text-ink leading-relaxed">
+              Non c’è un ordine cronologico degli eventi. Ogni episodio potrebbe essere letto come un mondo a sé. Solo il lettore si rende conto che nei nuovi personaggi ritornano dei fili conduttori dei vecchi, andando avanti con la lettura.
+            </p>
+          </div>
+
+          <!-- Punto 3 -->
+          <div
+            id="meaning-point-3"
+            onclick="toggleSingleMeaningPoint(3)"
+            class="meaning-card rounded-xl border-2 border-dawn-border bg-paper/40 p-5 sm:p-6 cursor-pointer transition-all hover:border-malcolm"
+          >
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-full bg-malcolm text-white font-bold flex items-center justify-center shrink-0">3</span>
+                <h3 class="font-bold text-lg sm:text-xl text-malcolm">Dialoghi serrati e salvezza all’alba</h3>
+              </div>
+              <span id="meaning-icon-3" class="text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-muted">Tocca per aprire</span>
+            </div>
+            <p id="meaning-text-3" class="hidden mt-4 text-ink leading-relaxed">
+              In tutti e tre i racconti, il rapporto tra i due protagonisti è costruito da dialoghi serrati e molto veloci, in cui i personaggi si raccontano, senza troppi giri di parole; in ogni occasione, in qualche modo, si salvano a vicenda sotto la luce dell’alba...
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Elenco essenziale dei Personaggi -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm space-y-6">
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-malcolm">
+          Personaggi dell’opera
+        </h2>
+
+        <!-- Protagonisti -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-muted mb-3">Protagonisti</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="rounded-xl p-5 bg-malcolm-light border-2 border-malcolm-border flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-malcolm text-white font-serif font-bold text-xl flex items-center justify-center shrink-0">
+                M
+              </div>
+              <div>
+                <div class="font-serif font-bold text-xl text-malcolm">Malcolm Webster</div>
+                <div class="text-sm text-ink/80">Protagonista maschile • presente in età diverse nei tre racconti</div>
+              </div>
+            </div>
+
+            <div class="rounded-xl p-5 bg-maryjo-light border-2 border-maryjo-border flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-maryjo text-white font-serif font-bold text-xl flex items-center justify-center shrink-0">
+                MJ
+              </div>
+              <div>
+                <div class="font-serif font-bold text-xl text-maryjo-dark">Mary Jo Pearson</div>
+                <div class="text-sm text-ink/80">Protagonista femminile • presente in età diverse nei tre racconti</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personaggi secondari -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-muted mb-3">Personaggi secondari</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            <div class="p-4 rounded-xl bg-paper/70 border border-dawn-border">
+              <span class="font-bold text-ink block">Mike</span>
+              <span class="text-sm text-muted">il fidanzato violento di lei, seconda parte</span>
+            </div>
+            <div class="p-4 rounded-xl bg-paper/70 border border-dawn-border">
+              <span class="font-bold text-ink block">Jonathan</span>
+              <span class="text-sm text-muted">l’uomo con la casa vicino al mare, terza parte, legato a entrambi i personaggi</span>
+            </div>
+            <div class="p-4 rounded-xl bg-paper/70 border border-dawn-border">
+              <span class="font-bold text-ink block">I genitori di lei / di lui</span>
+              <span class="text-sm text-muted">figure familiari richiamate nelle vicende dei protagonisti</span>
+            </div>
+            <div class="p-4 rounded-xl bg-paper/70 border border-dawn-border">
+              <span class="font-bold text-ink block">La moglie e i figli di Malcolm</span>
+              <span class="text-sm text-muted">il nucleo familiare di Malcolm</span>
+            </div>
+            <div class="p-4 rounded-xl bg-paper/70 border border-dawn-border">
+              <span class="font-bold text-ink block">Lo strozzino</span>
+              <span class="text-sm text-muted">figura legata alla vicenda giudiziaria di Malcolm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SEZIONE 2: LA MAPPA DEL TEMPO (FABULA VS INTRECCIO)                   -->
+    <!-- ===================================================================== -->
+    <section id="section-timeline" class="hidden fade-section space-y-8">
+      
+      <!-- Intestazione Mappa del Tempo -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm">
+        <span class="text-xs font-bold uppercase tracking-widest text-maryjo-dark">Struttura Narrativa • Analisi</span>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-malcolm mt-1">
+          La Mappa del Tempo: Fabula vs Intreccio
+        </h1>
+        <p class="text-muted mt-2 max-w-4xl">
+          Seleziona una Parte per osservare quali età dei due protagonisti si incontrano e come l’<strong>intreccio</strong> (l’ordine dei racconti nel libro) si incrocia con la <strong>fabula</strong> (l’ordine cronologico della loro vita).
+        </p>
+
+        <!-- Pulsanti di selezione Parte 1, 2, 3 e Confronto completo -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-6">
+          <button
+            id="map-btn-1"
+            onclick="selectTimelineMode('1')"
+            class="map-selector-btn min-h-[56px] px-5 py-3 rounded-xl font-bold text-base border-2 transition-all cursor-pointer flex items-center justify-center gap-2"
+          >
+            <span>Parte 1</span>
+          </button>
+          <button
+            id="map-btn-2"
+            onclick="selectTimelineMode('2')"
+            class="map-selector-btn min-h-[56px] px-5 py-3 rounded-xl font-bold text-base border-2 transition-all cursor-pointer flex items-center justify-center gap-2"
+          >
+            <span>Parte 2</span>
+          </button>
+          <button
+            id="map-btn-3"
+            onclick="selectTimelineMode('3')"
+            class="map-selector-btn min-h-[56px] px-5 py-3 rounded-xl font-bold text-base border-2 transition-all cursor-pointer flex items-center justify-center gap-2"
+          >
+            <span>Parte 3</span>
+          </button>
+          <button
+            id="map-btn-all"
+            onclick="selectTimelineMode('all')"
+            class="map-selector-btn min-h-[56px] px-5 py-3 rounded-xl font-bold text-base border-2 transition-all cursor-pointer flex items-center justify-center gap-2"
+          >
+            <span>Mostra confronto completo</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Schema Visivo Parallelo (SVG + Nodi ad alta leggibilità) -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm overflow-x-auto">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-dawn-border">
+          <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2.5">
+              <span class="w-4 h-4 rounded-full bg-malcolm inline-block"></span>
+              <span class="font-bold text-malcolm">Linea cronologica Malcolm Webster (Fabula →)</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-4 h-4 rounded-full bg-maryjo inline-block"></span>
+              <span class="font-bold text-maryjo-dark">Linea cronologica Mary Jo Pearson (Fabula →)</span>
+            </div>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-paper text-muted border border-dawn-border">
+            Età crescente da sinistra a destra
+          </span>
+        </div>
+
+        <!-- Diagramma Interattivo Responsive -->
+        <div class="min-w-[680px] py-4">
+          <svg viewBox="0 0 900 340" class="w-full h-auto select-none" role="img" aria-label="Schema temporale parallelo tra Malcolm Webster e Mary Jo Pearson">
+            <!-- Definizione frecce e filtri -->
+            <defs>
+              <marker id="arrow-malcolm" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#1E3A5F" />
+              </marker>
+              <marker id="arrow-maryjo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#C87D28" />
+              </marker>
+            </defs>
+
+            <!-- Etichette Personaggi a sinistra -->
+            <text x="20" y="65" fill="#1E3A5F" font-weight="700" font-size="18" font-family="Lora, serif">Malcolm</text>
+            <text x="20" y="87" fill="#525C68" font-weight="600" font-size="13">Webster</text>
+
+            <text x="20" y="265" fill="#9E5F18" font-weight="700" font-size="18" font-family="Lora, serif">Mary Jo</text>
+            <text x="20" y="287" fill="#525C68" font-weight="600" font-size="13">Pearson</text>
+
+            <!-- Linea Orizzontale Malcolm (y = 70) -->
+            <line x1="150" y1="70" x2="850" y2="70" stroke="#B8C9DE" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow-malcolm)" />
+
+            <!-- Linea Orizzontale Mary Jo (y = 270) -->
+            <line x1="150" y1="270" x2="850" y2="270" stroke="#ECCB9E" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow-maryjo)" />
+
+            <!-- CONNESSIONI TRA LE ETÀ (INTRECCIO) -->
+            <!-- Parte 1: Malcolm 42 (x=480, y=70) <-> Mary Jo ~42 (x=480, y=270) -->
+            <g id="conn-group-1" class="timeline-connector">
+              <line x1="480" y1="70" x2="480" y2="270" stroke="#2E6F40" stroke-width="5" stroke-dasharray="10,6" />
+              <rect x="415" y="150" width="130" height="36" rx="18" fill="#2E6F40" />
+              <text x="480" y="173" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="14">PARTE 1</text>
+            </g>
+
+            <!-- Parte 2: Malcolm 60 (x=760, y=70) <-> Mary Jo 16 (x=220, y=270) -->
+            <g id="conn-group-2" class="timeline-connector">
+              <line x1="760" y1="70" x2="220" y2="270" stroke="#C87D28" stroke-width="5" />
+              <rect x="425" y="150" width="130" height="36" rx="18" fill="#C87D28" />
+              <text x="490" y="173" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="14">PARTE 2</text>
+            </g>
+
+            <!-- Parte 3: Malcolm 13 (x=220, y=70) <-> Mary Jo 56 (x=760, y=270) -->
+            <g id="conn-group-3" class="timeline-connector">
+              <line x1="220" y1="70" x2="760" y2="270" stroke="#1E3A5F" stroke-width="5" />
+              <rect x="425" y="150" width="130" height="36" rx="18" fill="#1E3A5F" />
+              <text x="490" y="173" text-anchor="middle" fill="#FFFFFF" font-weight="700" font-size="14">PARTE 3</text>
+            </g>
+
+            <!-- NODI MALCOLM -->
+            <!-- Malcolm 13 anni (x=220, y=70) -->
+            <g id="node-m-13" class="transition-all">
+              <circle cx="220" cy="70" r="24" fill="#FFFFFF" stroke="#1E3A5F" stroke-width="4" />
+              <text x="220" y="75" text-anchor="middle" fill="#1E3A5F" font-weight="700" font-size="15">13</text>
+              <text x="220" y="32" text-anchor="middle" fill="#1E3A5F" font-weight="700" font-size="14">13 anni</text>
+            </g>
+
+            <!-- Malcolm 42 anni (x=480, y=70) -->
+            <g id="node-m-42" class="transition-all">
+              <circle cx="480" cy="70" r="24" fill="#FFFFFF" stroke="#1E3A5F" stroke-width="4" />
+              <text x="480" y="75" text-anchor="middle" fill="#1E3A5F" font-weight="700" font-size="15">42</text>
+              <text x="480" y="32" text-anchor="middle" fill="#1E3A5F" font-weight="700" font-size="14">42 anni</text>
+            </g>
+
+            <!-- Malcolm 60 anni (x=760, y=70) -->
+            <g id="node-m-60" class="transition-all">
+              <circle cx="760" cy="70" r="24" fill="#FFFFFF" stroke="#1E3A5F" stroke-width="4" />
+              <text x="760" y="75" text-anchor="middle" fill="#1E3A5F" font-weight="700" font-size="15">60</text>
+              <text x="760" y="32" text-anchor="middle" fill="#1E3A5F" font-weight="700" font-size="14">60 anni</text>
+            </g>
+
+            <!-- NODI MARY JO -->
+            <!-- Mary Jo 16 anni (x=220, y=270) -->
+            <g id="node-mj-16" class="transition-all">
+              <circle cx="220" cy="270" r="24" fill="#FFFFFF" stroke="#C87D28" stroke-width="4" />
+              <text x="220" y="275" text-anchor="middle" fill="#9E5F18" font-weight="700" font-size="15">16</text>
+              <text x="220" y="318" text-anchor="middle" fill="#9E5F18" font-weight="700" font-size="14">16 anni</text>
+            </g>
+
+            <!-- Mary Jo ~42 anni (x=480, y=270) -->
+            <g id="node-mj-42" class="transition-all">
+              <circle cx="480" cy="270" r="24" fill="#FFFFFF" stroke="#C87D28" stroke-width="4" />
+              <text x="480" y="275" text-anchor="middle" fill="#9E5F18" font-weight="700" font-size="14">~42</text>
+              <text x="480" y="318" text-anchor="middle" fill="#9E5F18" font-weight="700" font-size="14">~42 anni (adulta)</text>
+            </g>
+
+            <!-- Mary Jo 56 anni (x=760, y=270) -->
+            <g id="node-mj-56" class="transition-all">
+              <circle cx="760" cy="270" r="24" fill="#FFFFFF" stroke="#C87D28" stroke-width="4" />
+              <text x="760" y="275" text-anchor="middle" fill="#9E5F18" font-weight="700" font-size="15">56</text>
+              <text x="760" y="318" text-anchor="middle" fill="#9E5F18" font-weight="700" font-size="14">56 anni</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Riquadro Etichette Didattiche Dinamiche -->
+      <div id="timeline-explanation-box" class="space-y-4">
+        <!-- Popolato dinamicamente via JS -->
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SEZIONE 3: I 3 RACCONTI (VISTA PER SINGOLA PARTE)                     -->
+    <!-- ===================================================================== -->
+    <section id="section-stories" class="hidden fade-section space-y-8">
+      
+      <!-- Selettore Parte 1 / Parte 2 / Parte 3 + Controllo Isolamento Tappa -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-3">
+            <button
+              id="part-tab-1"
+              onclick="selectStoryPart(1)"
+              class="part-selector-btn min-h-[54px] px-6 py-3 rounded-xl font-bold text-base sm:text-lg border-2 transition-all cursor-pointer"
+            >
+              Parte 1
+            </button>
+            <button
+              id="part-tab-2"
+              onclick="selectStoryPart(2)"
+              class="part-selector-btn min-h-[54px] px-6 py-3 rounded-xl font-bold text-base sm:text-lg border-2 transition-all cursor-pointer"
+            >
+              Parte 2
+            </button>
+            <button
+              id="part-tab-3"
+              onclick="selectStoryPart(3)"
+              class="part-selector-btn min-h-[54px] px-6 py-3 rounded-xl font-bold text-base sm:text-lg border-2 transition-all cursor-pointer"
+            >
+              Parte 3
+            </button>
+          </div>
+
+          <!-- Interruttore Mostra tutto / Isola solo la tappa selezionata -->
+          <div class="flex flex-wrap items-center gap-2 bg-paper p-1.5 rounded-xl border border-dawn-border">
+            <button
+              id="mode-show-all"
+              onclick="setIsolateMode(false)"
+              class="min-h-[46px] px-4 py-2 rounded-lg font-semibold text-sm transition-all cursor-pointer"
+            >
+              Mostra tutto il testo
+            </button>
+            <button
+              id="mode-isolate"
+              onclick="setIsolateMode(true)"
+              class="min-h-[46px] px-4 py-2 rounded-lg font-semibold text-sm transition-all cursor-pointer"
+            >
+              Isola solo la tappa selezionata
+            </button>
+          </div>
+        </div>
+
+        <!-- Titolo Esatto della Parte -->
+        <div class="pt-4 border-t border-dawn-border">
+          <h1 id="story-part-title" class="font-serif text-2xl sm:text-4xl font-bold text-malcolm leading-snug">
+            <!-- Inserito via JS -->
+          </h1>
+        </div>
+      </div>
+
+      <!-- 1. INFOGRAFICA / SCHEMA A TAPPE DELLA SEQUENZA (IN ALTO) -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="font-serif text-xl sm:text-2xl font-bold text-malcolm">
+              Schema a tappe della sequenza
+            </h2>
+            <p class="text-sm text-muted">
+              Tocca una tappa per evidenziare nel riassunto i capoversi corrispondenti.
+            </p>
+          </div>
+          <button
+            id="btn-clear-step"
+            onclick="clearStepSelection()"
+            class="hidden min-h-[44px] px-4 py-2 rounded-xl border border-dawn-border bg-paper hover:bg-dawn-highlight text-sm font-semibold text-ink transition-all cursor-pointer"
+          >
+            Deseleziona tappa
+          </button>
+        </div>
+
+        <!-- 4 Nodi Visivi Numerati -->
+        <div id="story-steps-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Popolato dinamicamente via JS -->
+        </div>
+
+        <!-- Controlli rapidi di navigazione tra le tappe (utili alla LIM) -->
+        <div id="step-nav-controls" class="hidden pt-3 border-t border-dawn-border flex flex-wrap items-center justify-between gap-3">
+          <button
+            id="btn-prev-step"
+            onclick="navigateStep(-1)"
+            class="min-h-[48px] px-5 py-2.5 rounded-xl bg-paper hover:bg-malcolm-light text-malcolm font-bold border border-malcolm-border transition-all cursor-pointer"
+          >
+            ← Tappa precedente
+          </button>
+          <span id="step-indicator-label" class="text-sm font-bold text-maryjo-dark">
+            Tappa 1 di 4
+          </span>
+          <button
+            id="btn-next-step"
+            onclick="navigateStep(1)"
+            class="min-h-[48px] px-5 py-2.5 rounded-xl bg-malcolm hover:bg-malcolm-dark text-white font-bold transition-all cursor-pointer"
+          >
+            Tappa successiva →
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. RIASSUNTO INTEGRALE (AL CENTRO) -->
+      <div class="bg-white rounded-2xl p-6 sm:p-10 border border-dawn-border shadow-sm space-y-6">
+        <div class="flex items-center justify-between border-b border-dawn-border pb-4">
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-malcolm">
+            Riassunto integrale
+          </h2>
+          <span id="reading-status-badge" class="text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-paper text-muted border border-dawn-border">
+            Testo completo
+          </span>
+        </div>
+
+        <div id="story-paragraphs-container" class="space-y-5">
+          <!-- Capoversi popolati dinamicamente parola per parola -->
+        </div>
+      </div>
+
+      <!-- 3. ANALISI DEI PERSONAGGI DELLA SPECIFICA PARTE (IN BASSO) -->
+      <div class="space-y-4">
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-malcolm px-1">
+          Analisi dei personaggi in questa parte
+        </h2>
+        <div id="story-characters-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Card Malcolm e Card Mary Jo popolati dinamicamente solo per questa parte -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER PULITO -->
+  <footer class="border-t border-dawn-border bg-white/80 py-5 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-2 text-sm text-muted">
+      <span><strong>Tre volte all’alba</strong> di Alessandro Baricco — Materiale didattico per la LIM</span>
+      <span>Classe 1A LES • Liceo Economico Sociale</span>
+    </div>
+  </footer>
+
+  <!-- DATI INTEGRALI E LOGICA INTERATTIVA -->
+  <script>
+    /**
+     * DATI INTEGRALI DELLE TRE PARTI (PAROLA PER PAROLA COME RICHIESTO)
+     */
+    const STORIES_DATA = {
+      1: {
+        title: "Parte 1. Presente narrativo (entrambi adulti; hanno più o meno la stessa età)",
+        steps: [
+          {
+            number: 1,
+            label: "L'incontro nella hall alle 4:12 e il malore",
+            paragraphs: [1]
+          },
+          {
+            number: 2,
+            label: "La camera immacolata e il \"tavolo da gioco\"",
+            paragraphs: [2, 3]
+          },
+          {
+            number: 3,
+            label: "Il racconto di Malcolm e la casa da ricostruire",
+            paragraphs: [4]
+          },
+          {
+            number: 4,
+            label: "La polizia alla porta e la consegna della pistola",
+            paragraphs: [5]
+          }
+        ],
+        paragraphs: [
+          {
+            num: 1,
+            text: "Sono le 4:12 del mattino. In un albergo di “un’eleganza un po’ appannata” (con una porta girevole in legno, un pianoforte nell'angolo, una pendola), un uomo siede da solo in poltrona. Entra una donna in abito da sera giallo scollato, senza giacca né sciarpa. Iniziano a parlare del tempo (sembrava dovesse piovere) e lei gli chiede di raccontarle del suo lavoro per distrarsi perché ha la nausea. L’uomo inizia a parlare della sua fabbrica di bilance e che sta per andare a un appuntamento di lavoro, ma poco dopo la donna sta male e vomita sul tappeto della hall/sulle scarpe dell’uomo. Per evitare l’intervento del portiere di notte (che la donna dice di conoscere bene e odiare), salgono nella camera di lui. Dalle parole della donna, l’uomo capisce che lei non ha una camera in quell’albergo."
+          },
+          {
+            num: 2,
+            text: "La donna nota che la stanza è immacolata; lui, in effetti, ha passato tutta la notte seduto su una sedia senza toccare né letto né asciugamani. Dopo essersi lavato i denti poi gli pulisce le scarpe sporche di vomito lavandole sotto l’acqua e asciugandole con il phon; tutto questo processo impedisce all’uomo di uscire per presentarsi all’appuntamento di lavoro per il quale era già in ritardo al momento dell’incontro. A un certo punto squilla il telefono della camera: è il portiere di notte; l’uomo si prende la colpa del malore nella hall. Continuano a parlare, lei gli chiede quanti anni ha (42) e gli suggerisce di mollare tutto — lavoro, contratto, bilance — per ricominciare da capo."
+          },
+          {
+            num: 3,
+            text: "Mentre parla, si sfila l'abito da sera giallo, lo appoggia su una sedia, tira giù il copriletto rosso, si toglie il fermaglio dai capelli, si sgancia il reggiseno e scivola sotto le lenzuola tirandosele fin sotto il mento. Gli racconta la propria storia: a diciassette anni aveva avuto un bambino e, sopraffatta dall'angoscia di crescerlo da sola, sopravviveva fantasticando di lasciarlo a sua madre, cambiare città, lavoro e tagliarsi i capelli — cosa che poi, anni dopo, ha fatto davvero: aveva avuto un bambino all’età di diciassette anni, ma non l’ha mai cresciuto. Spiega all'uomo che ricominciare da capo non serve a cambiare sé stessi (\"come si è da piccoli si è tutta la vita\"), ma serve a “cambiare tavolo da gioco” quando ci si accorge di essere capitati nella partita sbagliata (e dice di aver trovato il suo tavolo, un ambiente cinico dove tutti barano ma dove finalmente gioca)."
+          },
+          {
+            num: 4,
+            text: "Anche l’uomo racconta qualcosa di se stesso: dice che per lui si è “spazzato tutto” quando aveva tredici anni, davanti a “un fuoco che si era preso tutto”; dice che suo padre era un alcolista e un violento; dice di aver incontrato un uomo che gli ha insegnato a “rimettere le cose a posto”, perché “c’è sempre una casa da ricostruire” - ed è stato proprio questo uomo a insegnargli l’esattezza dei gesti, l’importanza di misurare bene (poi infatti è finito a costruire bilance)."
+          },
+          {
+            num: 5,
+            text: "Mentre Malcolm parla dalla finestra della camera d'albergo, guarda giù in strada e vede tre auto della polizia fermarsi davanti all'ingresso dell'albergo con le luci blu lampeggianti. Guarda la donna nel letto (“solo in quel momento si accorse dei suoi occhi, che aveva chiari, ma grigi, come di lupo”) e decide di non fare niente... Quando bussano alla porta annunciando \"Polizia della Contea\", Malcolm si toglie la giacca e la porge alla donna nuda nel letto dicendole \"Si copra\". Lei la infila, mette la mano destra in tasca, trova la pistola di Malcolm e la stringe. Quando Malcolm apre la porta, il poliziotto chiede: \"È lei il signor Malcolm Webster?\" e poi si volta verso il letto senza alcuna sorpresa chiedendo alla donna: \"La pistola?\". Lei risponde: \"Tutto a posto, ce l'ho io.\" Il poliziotto annuisce e porta via Malcolm."
+          }
+        ],
+        characters: {
+          malcolm: {
+            name: "Malcolm (42 anni)",
+            temporalBadge: "Presente narrativo",
+            description: "Imprenditore (costruisce bilance di precisione) con l’hobby dei profumi; metodico, serioso. Appare fortemente inquieto ma non si intuisce perché fino alla fine; non sappiamo perché venga arrestato. Tra le cose, racconta che a tredici anni si è «spezzato tutto» davanti alla sua casa in fiamme (ricordando anche il padre che beveva vino ascoltando la radio con una pistola posata sul tavolo) e che l'incontro con un uomo gli ha insegnato a misurare e a «rimettere le cose a posto» — principio da cui nasce la sua attività di costruttore di bilance. Accenna di avere dei figli (dicendo che non gli fa impressione il vomito perché i suoi bambini vomitavano spesso) e rifiuta di bere birra per restare lucido fino all'ultimo. Il poliziotto che lo arresta lo chiama per nome."
+          },
+          maryjo: {
+            name: "Mary Jo (adulta; presumibilmente la stessa età)",
+            temporalBadge: "Presente narrativo",
+            description: "Donna non più giovane ma affascinante, disinvolta, ironica. Ha «occhi chiari, ma grigi, come di lupo»; si definisce imprecisa, incapace di portare a termine le cose e ammette che le piace essere «cattiva». In questa parte non viene mai chiamata per nome. Racconta di aver avuto un figlio a 17 anni e lo ha affidato a sua madre; è stata veramente innamorata nella vita solo una volta, non del padre di suo figlio. Alla fine scopriamo che è un’agente di polizia in borghese."
+          }
+        }
+      },
+
+      2: {
+        title: "Parte 2. Futuro di lui, passato di lei.",
+        steps: [
+          {
+            number: 1,
+            label: "L'arrivo in hotel e la sfida tra il portiere e la ragazzina",
+            paragraphs: [1, 2]
+          },
+          {
+            number: 2,
+            label: "La \"cattiveria\", la luce della giovinezza e la fuga dall'albergo",
+            paragraphs: [3]
+          },
+          {
+            number: 3,
+            label: "La confessione dell'omicidio dello strozzino all'alba",
+            paragraphs: [4]
+          },
+          {
+            number: 4,
+            label: "L'arrivo di Mike, l'autobus e gli asciugamani bianchi",
+            paragraphs: [5]
+          }
+        ],
+        paragraphs: [
+          {
+            num: 1,
+            text: "Sono circa le nove di sera. In un hotel squallido della periferia, un portiere di notte sulla sessantina accoglie senza fare domande (come gli ha ordinato la direzione, purché paghino in anticipo) una ragazzina molto giovane - truccata in modo pesante, con il rossetto rosso e “occhi chiari, ma grigi, come da lupa” - accompagnata dal suo ragazzo, un uomo più grande e dai modi bruschi che paga in contanti tirando fuori una mazzetta di banconote."
+          },
+          {
+            num: 2,
+            text: "Nel cuore della notte, il portiere sente dei rumori nella hall e li sorprende appoggiati a una parete mentre si baciano in modo sguaiato; con un colpo di tosse e porgendo loro la chiave, li invita a salire in camera. Poco dopo la ragazzina ridiscende da sola con il pretesto di chiedere gli asciugamani e si ferma a parlare con lui. Mentre lei lo provoca dicendogli che non ha avuto il coraggio di sognarsi qualcosa di meglio che fare il portiere di notte, l’uomo le risponde di aver pensato la stessa cosa di lei vedendola con quel ragazzo violento, perché dal modo in cui tiene i piedi uniti sui tacchi alti e dal suo portamento si capisce che è una ragazza “deliziosa”. Per convincerla di non essere uno sprovveduto, le confessa di aver passato tredici anni in galera per aver ucciso un uomo con un solo colpo di pistola, e le propone uno scambio: le racconterà il perché ha commesso quell’omicidio solo se lei in cambio uscirà dall’albergo e tornerà a casa lasciando quel ragazzo."
+          },
+          {
+            num: 3,
+            text: "Una telefonata dalla camera interrompe la conversazione: è il ragazzo (Mike), furioso per il ritardo; lei si scusa al telefono per calmarlo, poi continua a parlare con il portiere e ammette di avere in realtà sedici anni (non diciotto come aveva scritto sul modulo), rivendicando con orgoglio la propria “cattiveria” come unica difesa dal mondo. Il portiere le spiega invece che “la luce in cui si abita da giovani sarà la luce in cui si vivrà per sempre” e che la cattiveria è una luce fredda che toglie colore a tutto - proprio come lui, cresciuto nella violenza e nella tragedia, non è mai riuscito a uscire del tutto da quella luce. Quando l’ascensore scende al piano terra, l’uomo intuisce la paura della ragazza e la nasconde nella sua stanzetta d’ufficio; affronta il ragazzo, mentendo e dicendogli che lei è probabilmente salita sulla terrazza all’ultimo piano (che in realtà non esiste). Rimasto solo, rientra nella stanzetta e la chiama con il nome che ha appena sentito urlare - Mary Jo - convincendola a scappare insieme a lui approfittando della luce dell’alba, “la luce giusta per tornare a casa”."
+          },
+          {
+            num: 4,
+            text: "Usciti dal retro portando con sé gli asciugamani bianchi che lei vuole tenere come souvenir, camminano nella periferia illuminata dall’alba lungo il muro di una vecchia birreria chiusa. L’uomo spiega che non tocca alcol perché è in libertà vigilata e non può permettersi nessuna fesseria, e mantiene la promessa raccontandole l’omicidio: aveva ucciso uno strozzino a cui doveva molti soldi e che aveva iniziato a minacciare la sua famiglia; per difendere i suoi figli e la sua casa, aveva finto di portargli il denaro e gli aveva sparato un unico colpo a bruciapelo, sfruttando il fatto che lo strozzino lo credeva un vigliacco. Racconta anche che nei due giorni successivi non era scappato, girando con la pistola in tasca con l’idea di uccidersi all’arrivo della polizia, ma era stato fermato all’alba in un albergo da poliziotti talmente abili e garbati da impedirglielo; e ammette con amarezza che, una volta uscito di prigione, moglie e figli non l’hanno davvero perdonato, lasciandolo senza una casa."
+          },
+          {
+            num: 5,
+            text: "Mentre parlano, l’auto nera del ragazzo sbuca da un incrocio e li individua. I due corrono verso il viale principale; il portiere riesce a fermare un autobus al volo e fa salire Mary Jo all’ultimo secondo prima che le porte si richiudano, restando invece a terra per affrontarlo e darle il tempo di fuggire. Il ragazzo scende dall’auto, gli sferra un pugno sotto le costole e un calcio nella schiena urlandogli che lei è incinta, poi lo costringe a salire in macchina. Dopo aver vagato senza meta, si ferma davanti all’albergo, confessa di non essere nemmeno sicuro che il bambino sia suo e lo caccia dall’auto. Rimasto solo davanti all’albergo nella luce ancora chiara dell’alba, con il petto spezzato dal dolore, l’uomo immagina gli asciugamani bianchi abbandonati e puliti alla fermata dell’autobus, pensando che qualcuno li raccoglierà e li porterà a casa."
+          }
+        ],
+        characters: {
+          malcolm: {
+            name: "Malcolm (60 anni)",
+            temporalBadge: "Prolessi / flashforward rispetto alla Storia 1 — mostra chi diventerà dopo l’arresto e gli anni in carcere",
+            description: "Calmo, osservatore attentissimo ai dettagli (nota che lei tiene i piedi uniti anche sui tacchi alti), protettivo, saggio. Nella seconda parte resta senza nome (viene indicato solo come «il portiere d'albergo» o «l'uomo»). Ha scontato tredici anni di carcere per aver ucciso con un solo colpo di pistola uno strozzino che minacciava i suoi figli; ora è in libertà vigilata, non tocca alcol per restare lucido e ha perso la propria famiglia (moglie e figli non lo hanno davvero perdonato)."
+          },
+          maryjo: {
+            name: "Mary Jo (16 anni)",
+            temporalBadge: "Analessi / flashback rispetto alla Storia 1 — mostra il passato difficile da cui è fuggita per diventare la donna sicura in abito giallo, il momento in cui era incinta del bambino che poi abbandonerà",
+            description: "Compare per la prima volta il suo nome di battesimo (Mary Jo); dichiara diciotto anni sul modulo dell'albergo, ma confessa di averne sedici. Ha gli «occhi chiari, ma grigi, come da lupa» (indizio fisico fondamentale che permette al lettore di riconoscerla rispetto alla prima parte); rivendica la propria «cattiveria» come corazza per non avere paura del mondo, ha il vezzo infantile di rubare gli asciugamani degli alberghi come souvenir e vive a casa di sua madre. Fragile, sbandata, intrappolata in una relazione tossica e violenta con un uomo più grande, incinta."
+          }
+        }
+      },
+
+      3: {
+        title: "Parte 3. Futuro di lei, passato di lui.",
+        steps: [
+          {
+            number: 1,
+            label: "La fuga dall'albergo squallido e la telefonata al superiore",
+            paragraphs: [1, 2]
+          },
+          {
+            number: 2,
+            label: "La luce blu e il racconto dell'incendio della casa",
+            paragraphs: [3]
+          },
+          {
+            number: 3,
+            label: "Il posto di blocco, il pianto liberatorio e la storia di Jonathan",
+            paragraphs: [4, 5]
+          },
+          {
+            number: 4,
+            label: "L'arrivo all'alba alla casa sul mare e l'incontro con Jonathan",
+            paragraphs: [6, 7]
+          }
+        ],
+        paragraphs: [
+          {
+            num: 1,
+            text: "È notte fonda. In una stanza squallida di un albergo (\"la moquette lercia e i puzzle inquadrati alle pareti\"), un ragazzino di tredici anni, Malcolm, si rigira sul letto senza togliersi le scarpe né mettersi sotto le coperte. Seduta su una sedia in un angolo, una poliziotta di cinquantasei anni (Detective Pearson, matricola 3471) lo veglia senza essersi nemmeno tolta il giaccone. I suoi superiori avevano deciso di sistemarlo provvisoriamente lì perché l'unico parente rintracciato — uno zio che lavora in un cantiere al Nord — aveva bisogno di tempo per arrivare. Convinta che quell'abbandono sia un'ingiustizia (\"Nessun ragazzino poteva meritarsi una merda del genere\"), la donna va in bagno a rinfrescarsi, si fa venire \"un'idea idiota\" ma \"folle e delicata\", accende la luce e gli dice: \"Ce ne andiamo. [...] In un posto migliore\"."
+          },
+          {
+            num: 2,
+            text: "Salgono sulla sua scassata auto di servizio senza insegne — una vecchia Honda Civic della polizia di Birmingham piena di disordine (popcorn sparsi, un pacco famiglia, una scatola di phon, un manifesto arrotolato, due stivali da pesca) — e imboccano nel buio una strada verso est, fuori dalla città. Quando Malcolm si sveglia e chiede di tornare a casa, la detective gli spiega che non è una buona idea e inizia a chiacchierare con lui per distrarlo. Gli racconta di essere diventata poliziotta per ricominciare da capo, di aver studiato per \"capire la testa dei delinquenti o dei pazzi\" e di aver smesso di usare la pistola per diventare il tipo di agente \"che mandano sul cornicione a parlare con quelli che si stanno buttando giù\" o a leggere le lettere dei maniaci. A un tratto gracchia la radio di bordo: è il suo superiore che le intima di rientrare accusandola di sequestro; lei risponde che tenere un ragazzino traumatizzato in quell'albergo è assurdo (\"sai cosa te ne puoi fare del tuo protocollo?\"), rivendica di avere ormai solo quattro giorni prima della pensione (\"Voglio farlo bene, e a modo mio\") e fa spegnere la radio a Malcolm."
+          },
+          {
+            num: 3,
+            text: "Per divertirlo gli fa tirare fuori da sotto il sedile la luce blu magnetica da mettere sul tetto, ma alla vista del lampeggiante Malcolm si rabbuia e chiede subito di toglierla: \"C'erano tutte luci così, davanti a casa. [...] C'erano la grande luce del fuoco e poi sono arrivate tutte quelle luci lì.\" Nonostante lei provi a cambiare discorso, il ragazzino insiste per raccontare ciò che ha visto quella sera. È convinto che qualcuno — forse gli amici del padre — abbia appiccato l'incendio (\"Una casa non brucia da sola\"). Racconta di essere uscito in bicicletta mentre i genitori litigavano e di aver guardato dalla finestra grande quando è divampato il fuoco: suo padre era seduto al tavolo \"con la sua bottiglia di vino, e la pistola appoggiata lì vicino, come sempre\", mentre sua madre stava in piedi davanti a lui. Invece di fuggire, continuavano a urlarsi addosso anche quando lei ha preso fuoco \"come una fiaccola\", e lui era rimasto paralizzato a guardare indietreggiando solo quando il calore diventava insopportabile. Mentre parla, la detective stacca una mano dal volante per stringere forte quella del ragazzino, chiedendosi \"se c'è una possibilità, una sola, di tornare a guardare lontano quando davanti abbiamo sempre, tutti, qualche rovina che fuma\"."
+          },
+          {
+            num: 4,
+            text: "Proseguendo nel buio, il dialogo diventa più leggero e confidenziale. Malcolm le dice che non sembra un poliziotto perché è \"grassa\" e non porta la divisa; lei scherza dicendo che da giovane era \"uno schianto di donna\" e ammette di avere un figlio che non vede da anni perché non era \"buona a fare la madre\". Quando il ragazzino la paragona ai suoi genitori che non sono scappati dal fuoco, lei ribatte che al contrario \"sono sempre scappata quando la casa andava a fuoco, giuro, sono scappata un sacco di volte, non ho fatto altro che scappare\". Poco dopo, nello specchietto retrovisore compare la luce blu di un'auto della polizia: temendo che sia il suo superiore, la detective fa sdraiare Malcolm sul sedile fingendo che dorma e si prepara a fronteggiare il collega, ma quando la volante si affianca vede un giovane poliziotto che le fa semplicemente cenno col pollice per chiedere se va tutto bene e prosegue oltre. Superata la curva successiva, la donna accosta in una piazzuola e scoppia in un pianto silenzioso e liberatorio con la fronte appoggiata sul volante, insegnando poi a Malcolm che \"quando uno ha bisogno di piangere lo deve fare, inutile stare lì a farsi tanti problemi. [...] Dopo va tutto meglio\"."
+          },
+          {
+            num: 5,
+            text: "Ripartiti verso il mare, lei gli spiega che lo sta portando dall'unico posto bello che conosca al mondo: a casa di un suo amico che ha due anni più di lei ma \"non è uno che diventerà mai vecchio. Sarà come stare con un altro bambino, vedrai\". Confessa a Malcolm che quell'uomo è \"l'uomo della mia vita e io sono la donna della sua vita, tutto lì, solo che non siamo mai riusciti a vivere insieme\" (\"Non è neanche detto che se ami davvero qualcuno, ma tanto, la cosa migliore che puoi farci insieme sia vivere\"). Aggiunge che costruisce piccole barche di legno artigianali una ad una e che una volta ne aveva fabbricata una scrivendo il nome di lei \"in undici posti nascosti\", anche se non si vedono né si sentono da due o tre anni perché tra loro non ci si avvisa mai: si arriva e si suona."
+          },
+          {
+            num: 6,
+            text: "All'orizzonte sorge finalmente una luce \"cristallina\" e \"metallica\": \"Si chiama alba, quella. [...] Ce l'abbiamo fatta, signorino.\" Al cartello d'ingresso della cittadina sul mare si fermano a sgranchirsi le gambe; mentre guarda Malcolm piccolo in mezzo ai prati, la donna sente insieme il rimpianto e la gioia di aver combinato qualcosa di buono, ritrovando per un attimo quella \"argentea sfrontatezza che aveva da giovane, quando sapeva di non essere né peggio né meglio di tanti altri, ma solamente diversa, in un modo prezioso e inevitabile\"."
+          },
+          {
+            num: 7,
+            text: "Arrivano a destinazione. La donna tira la catenella di una campana di bronzo da barca appesa alla porta. Ad aprire è un uomo scalzo, in maglietta e boxer, con i capelli disordinati e grigi: \"Ciao Jonathan, disse la donna. Tu, disse semplicemente l'uomo, come se rispondesse a una domanda.\" Poi Jonathan socchiude gli occhi abbagliati dalla luce del mattino per guardare il ragazzino (si chiede addirittura se sia suo!); li accoglie, prepara la colazione, accetta di ospitare il bambino e alla fine invita la donna a restare con loro."
+          }
+        ],
+        characters: {
+          malcolm: {
+            name: "Malcolm (13 anni)",
+            temporalBadge: "Analessi / flashback rispetto alla prima e alla seconda parte — rivela l’origine esatta del suo trauma",
+            description: "Ragazzino appena sopravvissuto all'incendio della propria casa in cui sono morti entrambi i genitori. Chiuso nel silenzio e bloccato dallo shock provocato dalla scena a cui ha assistito e dal senso di colpa per non essere intervenuto (non riesce a togliersi le scarpe né a dormire, si turba alla vista della luce blu della polizia, ricorda l'immagine immobile dei genitori tra le fiamme), mostra già una lucidità precoce e un bisogno viscerale di verità e protezione."
+          },
+          maryjo: {
+            name: "Mary Jo (“Detective Pearson”, 56 anni)",
+            temporalBadge: "Prolessi / flashforward rispetto alla prima e alla seconda parte — mostra gli ultimi giorni della sua carriera lavorativa",
+            description: "Poliziotta del commissariato di Birmingham a quattro giorni dalla pensione. Disillusa sul piano personale — si considera un fallimento come madre (non vede da anni il figlio) e si sente appesantita dal tempo e dalla stanchezza — conserva però una profonda empatia e uno spirito anticonformista. Specializzata nel parlare con persone disperate (\"sul cornicione\"), infrange le regole e sfida le sue paure e i suoi limiti pur di sottrarre il ragazzino a un albergo squallido e affidarlo all'unico \"posto bello\" che conosce."
+          }
+        }
+      }
+    };
+
+    /**
+     * STATO DELL'APPLICAZIONE
+     */
+    const appState = {
+      currentSection: 'intro',     // 'intro' | 'timeline' | 'stories'
+      fontSize: 'md',              // 'sm' (18px) | 'md' (20px) | 'lg' (24px)
+      meaningOpen: true,
+      meaningPoints: { 1: true, 2: false, 3: false },
+      timelineMode: '1',           // '1' | '2' | '3' | 'all'
+      currentPart: 1,              // 1 | 2 | 3
+      selectedStepIndex: null,     // null oppure 0..3
+      isolateStepMode: false       // false = mostra tutto, true = isola tappa selezionata
+    };
+
+    /**
+     * CONTROLLO DIMENSIONE TESTO LIM
+     */
+    function setFontSize(sizeKey) {
+      appState.fontSize = sizeKey;
+      const sizeMap = {
+        sm: '18px',
+        md: '20px',
+        lg: '24px'
+      };
+      document.documentElement.style.setProperty('--base-font-size', sizeMap[sizeKey]);
+
+      document.querySelectorAll('.font-btn').forEach(btn => {
+        btn.classList.remove('bg-malcolm', 'text-white', 'shadow-sm');
+        btn.classList.add('text-ink', 'hover:bg-white');
+      });
+
+      const activeBtn = document.getElementById(`font-${sizeKey}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-ink', 'hover:bg-white');
+        activeBtn.classList.add('bg-malcolm', 'text-white', 'shadow-sm');
+      }
+    }
+
+    /**
+     * NAVIGAZIONE TRA LE 3 SEZIONI PRINCIPALI
+     */
+    function switchMainSection(sectionKey) {
+      appState.currentSection = sectionKey;
+
+      ['intro', 'timeline', 'stories'].forEach(key => {
+        const secEl = document.getElementById(`section-${key}`);
+        const navBtn = document.getElementById(`nav-${key}`);
+
+        if (key === sectionKey) {
+          secEl.classList.remove('hidden');
+          // Forza riavvio animazione fade-section
+          secEl.classList.remove('fade-section');
+          void secEl.offsetWidth;
+          secEl.classList.add('fade-section');
+
+          navBtn.classList.remove('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
+          navBtn.classList.add('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
+        } else {
+          secEl.classList.add('hidden');
+          navBtn.classList.remove('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
+          navBtn.classList.add('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * SEZIONE 1: INTERAZIONE PANNELLO "CHE VUOL DIRE?"
+     */
+    function toggleMeaningPanel() {
+      appState.meaningOpen = !appState.meaningOpen;
+      const body = document.getElementById('meaning-panel-body');
+      const btn = document.getElementById('btn-toggle-meaning');
+
+      if (appState.meaningOpen) {
+        body.classList.remove('hidden');
+        btn.textContent = 'Chiudi pannello';
+      } else {
+        body.classList.add('hidden');
+        btn.textContent = 'Apri pannello';
+      }
+    }
+
+    function toggleSingleMeaningPoint(num) {
+      appState.meaningPoints[num] = !appState.meaningPoints[num];
+      renderMeaningPoints();
+    }
+
+    function revealAllMeaningPoints() {
+      appState.meaningOpen = true;
+      document.getElementById('meaning-panel-body').classList.remove('hidden');
+      document.getElementById('btn-toggle-meaning').textContent = 'Chiudi pannello';
+
+      appState.meaningPoints = { 1: true, 2: true, 3: true };
+      renderMeaningPoints();
+    }
+
+    function renderMeaningPoints() {
+      [1, 2, 3].forEach(num => {
+        const isOpen = appState.meaningPoints[num];
+        const card = document.getElementById(`meaning-point-${num}`);
+        const text = document.getElementById(`meaning-text-${num}`);
+        const icon = document.getElementById(`meaning-icon-${num}`);
+
+        if (isOpen) {
+          text.classList.remove('hidden');
+          icon.textContent = 'Aperto';
+          card.classList.remove('border-dawn-border', 'bg-paper/40');
+          if (num === 2) {
+            card.classList.add('border-maryjo-border', 'bg-maryjo-light/50');
+            icon.className = 'text-sm font-bold px-3 py-1 rounded-lg bg-white border border-maryjo-border text-maryjo-dark';
+          } else {
+            card.classList.add('border-malcolm-border', 'bg-malcolm-light/40');
+            icon.className = 'text-sm font-bold px-3 py-1 rounded-lg bg-white border border-malcolm-border text-malcolm';
+          }
+        } else {
+          text.classList.add('hidden');
+          icon.textContent = 'Tocca per aprire';
+          icon.className = 'text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-muted';
+          card.className = 'meaning-card rounded-xl border-2 border-dawn-border bg-paper/40 p-5 sm:p-6 cursor-pointer transition-all hover:border-malcolm';
+        }
+      });
+    }
+
+    /**
+     * SEZIONE 2: LA MAPPA DEL TEMPO (FABULA VS INTRECCIO)
+     */
+    function selectTimelineMode(mode) {
+      appState.timelineMode = mode;
+
+      // Aggiorna stile pulsanti
+      ['1', '2', '3', 'all'].forEach(m => {
+        const btn = document.getElementById(`map-btn-${m}`);
+        if (m === mode) {
+          btn.classList.remove('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
+          btn.classList.add('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
+        } else {
+          btn.classList.remove('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
+          btn.classList.add('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
+        }
+      });
+
+      // Aggiorna opacità connettori SVG
+      const conn1 = document.getElementById('conn-group-1');
+      const conn2 = document.getElementById('conn-group-2');
+      const conn3 = document.getElementById('conn-group-3');
+
+      conn1.style.opacity = (mode === '1' || mode === 'all') ? '1' : '0.12';
+      conn2.style.opacity = (mode === '2' || mode === 'all') ? '1' : '0.12';
+      conn3.style.opacity = (mode === '3' || mode === 'all') ? '1' : '0.12';
+
+      // Evidenzia nodi età corrispondenti
+      const highlightNode = (id, active, colorHex) => {
+        const g = document.getElementById(id);
+        if (!g) return;
+        const circle = g.querySelector('circle');
+        const texts = g.querySelectorAll('text');
+        if (active) {
+          circle.setAttribute('fill', colorHex);
+          circle.setAttribute('r', '28');
+          texts[0].setAttribute('fill', '#FFFFFF');
+          g.style.opacity = '1';
+        } else {
+          circle.setAttribute('fill', '#FFFFFF');
+          circle.setAttribute('r', '24');
+          texts[0].setAttribute('fill', colorHex);
+          g.style.opacity = (mode === 'all') ? '1' : '0.35';
+        }
+      };
+
+      highlightNode('node-m-13', mode === '3' || mode === 'all', '#1E3A5F');
+      highlightNode('node-m-42', mode === '1' || mode === 'all', '#1E3A5F');
+      highlightNode('node-m-60', mode === '2' || mode === 'all', '#1E3A5F');
+
+      highlightNode('node-mj-16', mode === '2' || mode === 'all', '#C87D28');
+      highlightNode('node-mj-42', mode === '1' || mode === 'all', '#C87D28');
+      highlightNode('node-mj-56', mode === '3' || mode === 'all', '#C87D28');
+
+      // Aggiorna box etichette didattiche
+      const expBox = document.getElementById('timeline-explanation-box');
+
+      const cardsHTML = {
+        '1': `
+          <div class="bg-white rounded-2xl p-6 sm:p-8 border-2 border-emerald-700/30 shadow-sm fade-section">
+            <div class="inline-block px-3.5 py-1 rounded-full bg-emerald-50 text-emerald-900 font-bold text-sm border border-emerald-200 mb-3">
+              Parte 1 • Punto di partenza dell’intreccio
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-ink mb-4">
+              Presente narrativo (Malcolm 42 anni / Mary Jo adulta, stessa età)
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-malcolm-light border border-malcolm-border">
+                <span class="font-bold text-malcolm block">Malcolm Webster (42 anni)</span>
+                <span class="text-ink/90">Tempo zero della narrazione: presente narrativo (adulto).</span>
+              </div>
+              <div class="p-4 rounded-xl bg-maryjo-light border border-maryjo-border">
+                <span class="font-bold text-maryjo-dark block">Mary Jo Pearson (~42 anni, adulta)</span>
+                <span class="text-ink/90">Tempo zero della narrazione: presente narrativo (stessa età di Malcolm).</span>
+              </div>
+            </div>
+          </div>
+        `,
+        '2': `
+          <div class="bg-white rounded-2xl p-6 sm:p-8 border-2 border-maryjo-border shadow-sm fade-section">
+            <div class="inline-block px-3.5 py-1 rounded-full bg-maryjo-light text-maryjo-dark font-bold text-sm border border-maryjo-border mb-3">
+              Parte 2 • Incrocio temporale opposto
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-ink mb-4">
+              Prolessi / flashforward per Malcolm (60 anni) ↔ Analessi / flashback per Mary Jo (16 anni)
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-malcolm-light border border-malcolm-border">
+                <span class="font-bold text-malcolm block">Malcolm Webster (60 anni) → Prolessi / flashforward</span>
+                <span class="text-ink/90">Salto in avanti nel futuro rispetto alla Parte 1 (18 anni dopo).</span>
+              </div>
+              <div class="p-4 rounded-xl bg-maryjo-light border border-maryjo-border">
+                <span class="font-bold text-maryjo-dark block">Mary Jo Pearson (16 anni) → Analessi / flashback</span>
+                <span class="text-ink/90">Salto indietro nel passato rispetto alla Parte 1 (adolescente).</span>
+              </div>
+            </div>
+          </div>
+        `,
+        '3': `
+          <div class="bg-white rounded-2xl p-6 sm:p-8 border-2 border-malcolm-border shadow-sm fade-section">
+            <div class="inline-block px-3.5 py-1 rounded-full bg-malcolm-light text-malcolm font-bold text-sm border border-malcolm-border mb-3">
+              Parte 3 • Secondo incrocio temporale opposto
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-ink mb-4">
+              Analessi / flashback per Malcolm (13 anni) ↔ Prolessi / flashforward per Mary Jo (56 anni)
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-malcolm-light border border-malcolm-border">
+                <span class="font-bold text-malcolm block">Malcolm Webster (13 anni) → Analessi / flashback</span>
+                <span class="text-ink/90">Salto indietro nel passato rispetto alla Parte 1 (ragazzino).</span>
+              </div>
+              <div class="p-4 rounded-xl bg-maryjo-light border border-maryjo-border">
+                <span class="font-bold text-maryjo-dark block">Mary Jo Pearson (56 anni) → Prolessi / flashforward</span>
+                <span class="text-ink/90">Salto in avanti nel futuro rispetto alla Parte 1 (a quattro giorni dalla pensione).</span>
+              </div>
+            </div>
+          </div>
+        `,
+        'all': `
+          <div class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm space-y-5 fade-section">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-dawn-border pb-4">
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-malcolm">Confronto completo: Fabula vs Intreccio</h3>
+                <p class="text-sm text-muted mt-1">
+                  <strong>Fabula:</strong> ordine cronologico delle età (13/16 anni → 42 anni → 56/60 anni) •
+                  <strong>Intreccio:</strong> ordine in cui Baricco dispone i tre racconti (Parte 1 → Parte 2 → Parte 3).
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              <div class="p-5 rounded-xl bg-emerald-50/60 border-2 border-emerald-700/30">
+                <div class="font-bold text-emerald-900 text-lg mb-1">Parte 1 (Presente narrativo)</div>
+                <p class="text-sm text-ink/90"><strong>Malcolm:</strong> 42 anni (Presente narrativo)</p>
+                <p class="text-sm text-ink/90"><strong>Mary Jo:</strong> ~42 anni, adulta (Presente narrativo)</p>
+              </div>
+              <div class="p-5 rounded-xl bg-maryjo-light/70 border-2 border-maryjo-border">
+                <div class="font-bold text-maryjo-dark text-lg mb-1">Parte 2 (Futuro di lui, passato di lei)</div>
+                <p class="text-sm text-ink/90"><strong>Malcolm:</strong> 60 anni (Prolessi / flashforward)</p>
+                <p class="text-sm text-ink/90"><strong>Mary Jo:</strong> 16 anni (Analessi / flashback)</p>
+              </div>
+              <div class="p-5 rounded-xl bg-malcolm-light/70 border-2 border-malcolm-border">
+                <div class="font-bold text-malcolm text-lg mb-1">Parte 3 (Futuro di lei, passato di lui)</div>
+                <p class="text-sm text-ink/90"><strong>Malcolm:</strong> 13 anni (Analessi / flashback)</p>
+                <p class="text-sm text-ink/90"><strong>Mary Jo:</strong> 56 anni (Prolessi / flashforward)</p>
+              </div>
+            </div>
+          </div>
+        `
+      };
+
+      expBox.innerHTML = cardsHTML[mode];
+    }
+
+    /**
+     * SEZIONE 3: I 3 RACCONTI (VISTA PER SINGOLA PARTE)
+     */
+    function selectStoryPart(partNum) {
+      appState.currentPart = partNum;
+      // Reset selezione tappe per evitare qualsiasi confusione o spoiler tra parti
+      appState.selectedStepIndex = null;
+
+      // Aggiorna stato pulsanti Parte 1 / 2 / 3
+      [1, 2, 3].forEach(num => {
+        const btn = document.getElementById(`part-tab-${num}`);
+        if (num === partNum) {
+          btn.classList.remove('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
+          btn.classList.add('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
+        } else {
+          btn.classList.remove('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
+          btn.classList.add('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
+        }
+      });
+
+      renderStoryContent();
+    }
+
+    function setIsolateMode(isolate) {
+      appState.isolateStepMode = isolate;
+      // Se si attiva "Isola solo la tappa selezionata" e non c'è ancora una tappa selezionata, seleziona la prima
+      if (isolate && appState.selectedStepIndex === null) {
+        appState.selectedStepIndex = 0;
+      }
+      renderStoryContent();
+    }
+
+    function toggleStepSelection(stepIdx) {
+      if (appState.selectedStepIndex === stepIdx) {
+        // Se si clicca di nuovo sulla stessa tappa: se non siamo in modalità isolata, deseleziona
+        if (!appState.isolateStepMode) {
+          appState.selectedStepIndex = null;
+        }
+      } else {
+        appState.selectedStepIndex = stepIdx;
+      }
+      renderStoryContent();
+    }
+
+    function clearStepSelection() {
+      appState.selectedStepIndex = null;
+      appState.isolateStepMode = false;
+      renderStoryContent();
+    }
+
+    function navigateStep(delta) {
+      const partData = STORIES_DATA[appState.currentPart];
+      if (appState.selectedStepIndex === null) {
+        appState.selectedStepIndex = 0;
+      } else {
+        const nextIdx = appState.selectedStepIndex + delta;
+        if (nextIdx >= 0 && nextIdx < partData.steps.length) {
+          appState.selectedStepIndex = nextIdx;
+        }
+      }
+      renderStoryContent();
+    }
+
+    function renderStoryContent() {
+      const partData = STORIES_DATA[appState.currentPart];
+
+      // 1. Titolo della Parte
+      document.getElementById('story-part-title').textContent = partData.title;
+
+      // 2. Aggiorna pulsanti interruttore "Mostra tutto il testo" / "Isola solo la tappa selezionata"
+      const btnAll = document.getElementById('mode-show-all');
+      const btnIso = document.getElementById('mode-isolate');
+
+      if (!appState.isolateStepMode) {
+        btnAll.className = 'min-h-[46px] px-4 py-2 rounded-lg font-bold text-sm transition-all cursor-pointer bg-malcolm text-white shadow-sm';
+        btnIso.className = 'min-h-[46px] px-4 py-2 rounded-lg font-semibold text-sm transition-all cursor-pointer text-ink hover:bg-white';
+      } else {
+        btnIso.className = 'min-h-[46px] px-4 py-2 rounded-lg font-bold text-sm transition-all cursor-pointer bg-maryjo text-white shadow-sm';
+        btnAll.className = 'min-h-[46px] px-4 py-2 rounded-lg font-semibold text-sm transition-all cursor-pointer text-ink hover:bg-white';
+      }
+
+      // 3. Render Nodi delle Tappe
+      const stepsGrid = document.getElementById('story-steps-grid');
+      stepsGrid.innerHTML = partData.steps.map((step, idx) => {
+        const isActive = appState.selectedStepIndex === idx;
+        const capsText = step.paragraphs.length > 1
+          ? `Capoversi ${step.paragraphs.join(' e ')}`
+          : `Capoverso ${step.paragraphs[0]}`;
+
+        return `
+          <button
+            onclick="toggleStepSelection(${idx})"
+            class="step-node text-left p-5 rounded-xl border-2 flex flex-col justify-between gap-3 cursor-pointer min-h-[128px] ${
+              isActive
+                ? 'active'
+                : 'bg-paper/60 border-dawn-border text-ink hover:border-malcolm hover:bg-malcolm-light/30'
+            }"
+          >
+            <div class="flex items-center justify-between w-full">
+              <span class="step-badge w-9 h-9 rounded-full font-bold text-base flex items-center justify-center ${
+                isActive ? '' : 'bg-malcolm text-white'
+              }">
+                ${step.number}
+              </span>
+              <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md ${
+                isActive ? 'bg-white/20 text-white' : 'bg-white text-muted border border-dawn-border'
+              }">
+                ${capsText}
+              </span>
+            </div>
+            <div class="font-bold text-base leading-snug">
+              ${step.label}
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      // Pulsante deseleziona e controlli tappa precedente/successiva
+      const clearBtn = document.getElementById('btn-clear-step');
+      const navControls = document.getElementById('step-nav-controls');
+
+      if (appState.selectedStepIndex !== null) {
+        clearBtn.classList.remove('hidden');
+        navControls.classList.remove('hidden');
+
+        const prevBtn = document.getElementById('btn-prev-step');
+        const nextBtn = document.getElementById('btn-next-step');
+        const label = document.getElementById('step-indicator-label');
+
+        label.textContent = `Tappa ${appState.selectedStepIndex + 1} di ${partData.steps.length}: ${partData.steps[appState.selectedStepIndex].label}`;
+
+        prevBtn.disabled = appState.selectedStepIndex === 0;
+        prevBtn.style.opacity = appState.selectedStepIndex === 0 ? '0.4' : '1';
+
+        nextBtn.disabled = appState.selectedStepIndex === partData.steps.length - 1;
+        nextBtn.style.opacity = appState.selectedStepIndex === partData.steps.length - 1 ? '0.4' : '1';
+      } else {
+        clearBtn.classList.add('hidden');
+        navControls.classList.add('hidden');
+      }
+
+      // 4. Render Riassunto Integrale
+      const activeStep = appState.selectedStepIndex !== null ? partData.steps[appState.selectedStepIndex] : null;
+      const highlightedParagraphNums = activeStep ? activeStep.paragraphs : [];
+
+      const readingBadge = document.getElementById('reading-status-badge');
+      if (activeStep && appState.isolateStepMode) {
+        readingBadge.textContent = `Tappa ${activeStep.number} isolata`;
+        readingBadge.className = 'text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-maryjo-light text-maryjo-dark border border-maryjo-border';
+      } else if (activeStep) {
+        readingBadge.textContent = `Evidenziata Tappa ${activeStep.number}`;
+        readingBadge.className = 'text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-malcolm-light text-malcolm border border-malcolm-border';
+      } else {
+        readingBadge.textContent = 'Testo completo';
+        readingBadge.className = 'text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-paper text-muted border border-dawn-border';
+      }
+
+      const paragraphsContainer = document.getElementById('story-paragraphs-container');
+      const paragraphsToRender = (activeStep && appState.isolateStepMode)
+        ? partData.paragraphs.filter(p => highlightedParagraphNums.includes(p.num))
+        : partData.paragraphs;
+
+      paragraphsContainer.innerHTML = paragraphsToRender.map(p => {
+        const isHighlighted = highlightedParagraphNums.includes(p.num);
+        const isDimmed = activeStep && !isHighlighted && !appState.isolateStepMode;
+
+        let stateClass = '';
+        if (isHighlighted) stateClass = 'highlighted';
+        else if (isDimmed) stateClass = 'dimmed';
+
+        return `
+          <div class="paragraph-card rounded-xl p-5 sm:p-6 bg-paper/45 border border-dawn-border/60 ${stateClass}">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-block text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md ${
+                isHighlighted
+                  ? 'bg-maryjo text-white'
+                  : 'bg-white text-muted border border-dawn-border'
+              }">
+                Capoverso ${p.num}
+              </span>
+            </div>
+            <p class="text-ink leading-relaxed">
+              ${p.text}
+            </p>
+          </div>
+        `;
+      }).join('');
+
+      // 5. Render Analisi dei Personaggi della specifica Parte (2 card affiancate)
+      const charsGrid = document.getElementById('story-characters-grid');
+      const mData = partData.characters.malcolm;
+      const mjData = partData.characters.maryjo;
+
+      charsGrid.innerHTML = `
+        <!-- Card Malcolm -->
+        <article class="bg-white rounded-2xl p-6 sm:p-8 border-2 border-malcolm-border shadow-sm flex flex-col justify-between space-y-4">
+          <div class="space-y-4">
+            <div class="flex flex-wrap items-start justify-between gap-3 border-b border-malcolm-border/60 pb-4">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-malcolm block mb-1">Protagonista maschile</span>
+                <h3 class="font-serif text-2xl font-bold text-malcolm">${mData.name}</h3>
+              </div>
+              <span class="inline-block px-3.5 py-1.5 rounded-xl bg-malcolm-light text-malcolm font-bold text-xs sm:text-sm border border-malcolm-border">
+                ${mData.temporalBadge}
+              </span>
+            </div>
+            <p class="text-ink leading-relaxed">
+              ${mData.description}
+            </p>
+          </div>
+        </article>
+
+        <!-- Card Mary Jo -->
+        <article class="bg-white rounded-2xl p-6 sm:p-8 border-2 border-maryjo-border shadow-sm flex flex-col justify-between space-y-4">
+          <div class="space-y-4">
+            <div class="flex flex-wrap items-start justify-between gap-3 border-b border-maryjo-border/60 pb-4">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-maryjo-dark block mb-1">Protagonista femminile</span>
+                <h3 class="font-serif text-2xl font-bold text-maryjo-dark">${mjData.name}</h3>
+              </div>
+              <span class="inline-block px-3.5 py-1.5 rounded-xl bg-maryjo-light text-maryjo-dark font-bold text-xs sm:text-sm border border-maryjo-border">
+                ${mjData.temporalBadge}
+              </span>
+            </div>
+            <p class="text-ink leading-relaxed">
+              ${mjData.description}
+            </p>
+          </div>
+        </article>
+      `;
+    }
+
+    /**
+     * INIZIALIZZAZIONE AL CARICAMENTO DELLA PAGINA
+     */
+    window.addEventListener('DOMContentLoaded', () => {
+      setFontSize('md');
+      switchMainSection('intro');
+      renderMeaningPoints();
+      selectTimelineMode('1');
+      selectStoryPart(1);
+    });
+  </script>
+</body>
+</html>
