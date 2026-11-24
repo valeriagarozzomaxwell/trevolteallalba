@@ -4,46 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tre volte all’alba — Analisi e ripasso per la LIM (1A LES)</title>
+  <meta name="description" content="Analisi e ripasso interattivo di «Tre volte all’alba» di Alessandro Baricco per la LIM: la mappa del tempo, i riassunti a tappe, i fili conduttori, le citazioni chiave e una verifica rapida. Classe 1A LES." />
+  <meta name="theme-color" content="#1E3A5F" />
+  <link rel="canonical" href="https://trevolteallalba.vercel.app/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:site_name" content="Tre volte all’alba — Ripasso" />
+  <meta property="og:title" content="Tre volte all’alba — Analisi e ripasso per la classe" />
+  <meta property="og:description" content="Mappa del tempo, riassunti a tappe, fili conduttori, citazioni e verifica rapida sul libro di Alessandro Baricco." />
+  <meta property="og:url" content="https://trevolteallalba.vercel.app/" />
+  <meta property="og:image" content="https://trevolteallalba.vercel.app/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Alba sulla hall di un vecchio albergo, con il titolo Tre volte all’alba" />
+  <meta name="twitter:card" content="summary_large_image" />
   <!-- Google Fonts con fallback di sistema per massima leggibilità -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ivory: '#FAF8F5',
-            paper: '#F3EFE8',
-            card: '#FFFFFF',
-            ink: '#1E242B',
-            muted: '#525C68',
-            malcolm: {
-              DEFAULT: '#1E3A5F',
-              light: '#EAF0F6',
-              border: '#B8C9DE',
-              dark: '#142842'
-            },
-            maryjo: {
-              DEFAULT: '#C87D28',
-              light: '#FDF4E7',
-              border: '#ECCB9E',
-              dark: '#9E5F18'
-            },
-            dawn: {
-              border: '#E2DDD5',
-              highlight: '#FFF8EB'
-            }
-          },
-          fontFamily: {
-            sans: ['"Source Sans 3"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-            serif: ['"Lora"', 'Georgia', 'Cambria', '"Times New Roman"', 'serif']
-          }
-        }
-      }
-    };
-  </script>
+  <!-- CSS generato da tailwind/tailwind.config.js: vedi il commento in quel file per rigenerarlo -->
+  <link rel="stylesheet" href="/assets/styles.css" />
   <style>
     :root {
       --base-font-size: 20px;
@@ -127,82 +108,217 @@
       touch-action: manipulation;
       user-select: none;
     }
+
+    :focus-visible {
+      outline: 3px solid #C87D28;
+      outline-offset: 2px;
+    }
+
+    /* Termini del glossario dentro il testo */
+    .term-btn {
+      display: inline;
+      padding: 0 0.1em;
+      margin: 0;
+      border: 0;
+      border-radius: 0.25em;
+      background: none;
+      font: inherit;
+      color: inherit;
+      text-decoration: underline dotted;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+      text-decoration-color: #C87D28;
+      cursor: help;
+      user-select: text;
+    }
+
+    .term-btn:hover {
+      background-color: #FFF8EB;
+      color: #1E242B;
+    }
+
+    dialog::backdrop {
+      background: rgba(20, 40, 66, 0.6);
+    }
+
+    .print-only {
+      display: none;
+    }
+
+    /* Versione da stampare / salvare in PDF */
+    @media print {
+      @page {
+        margin: 16mm;
+      }
+
+      html {
+        font-size: 11pt !important;
+      }
+
+      body {
+        background: #FFFFFF;
+        line-height: 1.5;
+      }
+
+      header,
+      main,
+      footer,
+      dialog {
+        display: none !important;
+      }
+
+      .print-only {
+        display: block !important;
+      }
+
+      #print-summary h1 {
+        font-family: "Lora", Georgia, serif;
+        font-size: 22pt;
+        color: #1E3A5F;
+        margin: 0 0 2pt;
+      }
+
+      #print-summary h2 {
+        font-family: "Lora", Georgia, serif;
+        font-size: 15pt;
+        color: #1E3A5F;
+        margin: 18pt 0 6pt;
+        border-bottom: 1px solid #B8C9DE;
+        padding-bottom: 3pt;
+      }
+
+      #print-summary h3 {
+        font-size: 11pt;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #9E5F18;
+        margin: 10pt 0 4pt;
+      }
+
+      #print-summary p,
+      #print-summary li {
+        margin: 0 0 5pt;
+      }
+
+      #print-summary ol,
+      #print-summary ul {
+        padding-left: 16pt;
+        margin: 0 0 6pt;
+      }
+
+      #print-summary table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 4pt 0 8pt;
+      }
+
+      #print-summary th,
+      #print-summary td {
+        border: 1px solid #E2DDD5;
+        padding: 4pt 6pt;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      #print-summary blockquote {
+        font-family: "Lora", Georgia, serif;
+        font-style: italic;
+        margin: 0 0 8pt;
+        padding-left: 8pt;
+        border-left: 3px solid #C87D28;
+      }
+
+      #print-summary .ps-muted {
+        color: #525C68;
+      }
+
+      #print-summary .ps-part {
+        break-before: page;
+      }
+
+      #print-summary p,
+      #print-summary blockquote,
+      #print-summary tr {
+        break-inside: avoid;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-maryjo-light selection:text-ink">
 
+  <a href="#contenuto" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-malcolm focus:text-white">Vai al contenuto</a>
+
   <!-- BARRA DI NAVIGAZIONE SUPERIORE FISSA (STICKY PER LIM) -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-dawn-border shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
-      
-      <!-- Titolo compatto libro -->
-      <div class="flex items-center gap-3">
-        <div class="w-3 h-10 rounded-full bg-gradient-to-b from-malcolm via-maryjo to-amber-300 shrink-0" aria-hidden="true"></div>
-        <div>
-          <span class="block text-xs font-bold uppercase tracking-wider text-maryjo-dark">Alessandro Baricco • 1A LES</span>
-          <span class="font-serif font-bold text-lg sm:text-xl text-malcolm leading-tight">Tre volte all’alba</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col gap-3">
+
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <!-- Titolo compatto libro -->
+        <div class="flex items-center gap-3">
+          <div class="w-3 h-10 rounded-full bg-gradient-to-b from-malcolm via-maryjo to-amber-300 shrink-0" aria-hidden="true"></div>
+          <div>
+            <span class="block text-xs font-bold uppercase tracking-wider text-maryjo-dark">Alessandro Baricco • 1A LES</span>
+            <span class="font-serif font-bold text-lg sm:text-xl text-malcolm leading-tight">Tre volte all’alba</span>
+          </div>
+        </div>
+
+        <!-- Strumenti per la lezione -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onclick="openGlossary()"
+            aria-haspopup="dialog"
+            class="min-h-[44px] px-3.5 rounded-xl border border-dawn-border bg-white hover:border-malcolm hover:bg-malcolm-light/40 text-malcolm font-semibold text-sm flex items-center gap-2 transition-all cursor-pointer"
+          >
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>Glossario</span>
+          </button>
+          <button
+            type="button"
+            onclick="printSummary()"
+            class="min-h-[44px] px-3.5 rounded-xl border border-dawn-border bg-white hover:border-malcolm hover:bg-malcolm-light/40 text-malcolm font-semibold text-sm flex items-center gap-2 transition-all cursor-pointer"
+          >
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            <span>Stampa / PDF</span>
+          </button>
+          <button
+            id="btn-fullscreen"
+            type="button"
+            onclick="toggleFullscreen()"
+            aria-pressed="false"
+            class="min-h-[44px] px-3.5 rounded-xl border border-dawn-border bg-white hover:border-malcolm hover:bg-malcolm-light/40 text-malcolm font-semibold text-sm flex items-center gap-2 transition-all cursor-pointer"
+          >
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+            <span id="fullscreen-label">Schermo intero</span>
+          </button>
+
+          <!-- Controllo Dimensione Testo LIM (A- / A / A+) -->
+          <div class="flex items-center bg-paper p-1.5 rounded-xl border border-dawn-border" role="group" aria-label="Dimensione del testo alla LIM">
+            <span class="text-xs font-semibold text-muted px-2 hidden xl:inline" aria-hidden="true">Testo LIM:</span>
+            <button id="font-sm" type="button" onclick="setFontSize('sm')" aria-pressed="false" aria-label="Testo normale" title="Testo normale (18px)"
+              class="font-btn min-h-[44px] min-w-[46px] px-2.5 rounded-lg font-bold text-sm transition-all cursor-pointer">A-</button>
+            <button id="font-md" type="button" onclick="setFontSize('md')" aria-pressed="false" aria-label="Testo medio" title="Testo medio per LIM (20px)"
+              class="font-btn min-h-[44px] min-w-[46px] px-2.5 rounded-lg font-bold text-base transition-all cursor-pointer">A</button>
+            <button id="font-lg" type="button" onclick="setFontSize('lg')" aria-pressed="false" aria-label="Testo grande" title="Testo grande per LIM (24px)"
+              class="font-btn min-h-[44px] min-w-[46px] px-2.5 rounded-lg font-bold text-lg transition-all cursor-pointer">A+</button>
+          </div>
         </div>
       </div>
 
-      <!-- 3 Schede di Navigazione Principali -->
-      <nav aria-label="Sezioni principali" class="flex flex-wrap items-center gap-2">
-        <button
-          id="nav-intro"
-          onclick="switchMainSection('intro')"
-          class="nav-tab min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 cursor-pointer"
-        >
-          1. Introduzione e Premessa
-        </button>
-        <button
-          id="nav-timeline"
-          onclick="switchMainSection('timeline')"
-          class="nav-tab min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 cursor-pointer"
-        >
-          2. La Mappa del Tempo
-        </button>
-        <button
-          id="nav-stories"
-          onclick="switchMainSection('stories')"
-          class="nav-tab min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 cursor-pointer"
-        >
-          3. I 3 Racconti
-        </button>
+      <!-- 5 Schede di Navigazione Principali (ogni scheda ha il suo indirizzo, es. #racconti-2) -->
+      <nav aria-label="Sezioni principali" class="flex items-center gap-2 overflow-x-auto pb-1">
+        <a id="nav-intro" href="#introduzione" class="nav-tab shrink-0 min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 flex items-center">1. Introduzione</a>
+        <a id="nav-timeline" href="#mappa" class="nav-tab shrink-0 min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 flex items-center">2. La Mappa del Tempo</a>
+        <a id="nav-stories" href="#racconti-1" class="nav-tab shrink-0 min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 flex items-center">3. I 3 Racconti</a>
+        <a id="nav-threads" href="#fili" class="nav-tab shrink-0 min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 flex items-center">4. Fili e citazioni</a>
+        <a id="nav-quiz" href="#verifica" class="nav-tab shrink-0 min-h-[48px] px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm sm:text-base transition-all border-2 flex items-center">5. Verifica rapida</a>
       </nav>
-
-      <!-- Controllo Dimensione Testo LIM (A- / A / A+) -->
-      <div class="flex items-center bg-paper p-1.5 rounded-xl border border-dawn-border" role="group" aria-label="Dimensione del testo alla LIM">
-        <span class="text-xs font-semibold text-muted px-2 hidden xl:inline">Testo LIM:</span>
-        <button
-          id="font-sm"
-          onclick="setFontSize('sm')"
-          class="font-btn min-h-[44px] min-w-[46px] px-2.5 rounded-lg font-bold text-sm transition-all cursor-pointer"
-          title="Testo normale (18px)"
-        >
-          A-
-        </button>
-        <button
-          id="font-md"
-          onclick="setFontSize('md')"
-          class="font-btn min-h-[44px] min-w-[46px] px-2.5 rounded-lg font-bold text-base transition-all cursor-pointer"
-          title="Testo medio per LIM (20px)"
-        >
-          A
-        </button>
-        <button
-          id="font-lg"
-          onclick="setFontSize('lg')"
-          class="font-btn min-h-[44px] min-w-[46px] px-2.5 rounded-lg font-bold text-lg transition-all cursor-pointer"
-          title="Testo grande per LIM (24px)"
-        >
-          A+
-        </button>
-      </div>
 
     </div>
   </header>
 
   <!-- CONTENUTO PRINCIPALE -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+  <main id="contenuto" tabindex="-1" class="outline-none flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
 
     <!-- ===================================================================== -->
     <!-- SEZIONE 1: INTRODUZIONE E PREMESSA                                    -->
@@ -253,7 +369,10 @@
           <div class="flex flex-wrap items-center gap-3">
             <button
               id="btn-toggle-meaning"
+              type="button"
               onclick="toggleMeaningPanel()"
+              aria-expanded="true"
+              aria-controls="meaning-panel-body"
               class="min-h-[48px] px-5 py-2.5 rounded-xl bg-malcolm text-white font-semibold hover:bg-malcolm-dark transition-all cursor-pointer shadow-sm"
             >
               Chiudi pannello
@@ -272,16 +391,17 @@
           <!-- Punto 1 -->
           <div
             id="meaning-point-1"
-            onclick="toggleSingleMeaningPoint(1)"
-            class="meaning-card rounded-xl border-2 border-malcolm-border bg-malcolm-light/40 p-5 sm:p-6 cursor-pointer transition-all hover:border-malcolm"
+            class="meaning-card rounded-xl border-2 border-malcolm-border bg-malcolm-light/40 p-5 sm:p-6 transition-all hover:border-malcolm"
           >
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-3">
-                <span class="w-9 h-9 rounded-full bg-malcolm text-white font-bold flex items-center justify-center shrink-0">1</span>
-                <h3 class="font-bold text-lg sm:text-xl text-malcolm">Sfasature temporali e autonomia</h3>
-              </div>
-              <span id="meaning-icon-1" class="text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-malcolm">Aperto</span>
-            </div>
+            <h3>
+              <button id="meaning-btn-1" type="button" onclick="toggleSingleMeaningPoint(1)" aria-expanded="true" aria-controls="meaning-text-1" class="w-full flex items-center justify-between gap-3 text-left cursor-pointer rounded-lg">
+                <span class="flex items-center gap-3">
+                  <span class="w-9 h-9 rounded-full bg-malcolm text-white font-bold flex items-center justify-center shrink-0" aria-hidden="true">1</span>
+                  <span class="font-bold text-lg sm:text-xl text-malcolm">Sfasature temporali e autonomia</span>
+                </span>
+                <span id="meaning-icon-1" aria-hidden="true" class="text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-malcolm shrink-0">Aperto</span>
+              </button>
+            </h3>
             <p id="meaning-text-1" class="mt-4 text-ink leading-relaxed">
               Le storie sono tre e sono autonome; tuttavia, vi ricorrono gli stessi due protagonisti, che a causa di sfasature temporali si rincontreranno, a loro insaputa, in età differenti.
             </p>
@@ -290,36 +410,38 @@
           <!-- Punto 2 -->
           <div
             id="meaning-point-2"
-            onclick="toggleSingleMeaningPoint(2)"
-            class="meaning-card rounded-xl border-2 border-dawn-border bg-paper/40 p-5 sm:p-6 cursor-pointer transition-all hover:border-maryjo"
+            class="meaning-card rounded-xl border-2 border-dawn-border bg-paper/40 p-5 sm:p-6 transition-all hover:border-maryjo"
           >
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-3">
-                <span class="w-9 h-9 rounded-full bg-maryjo text-white font-bold flex items-center justify-center shrink-0">2</span>
-                <h3 class="font-bold text-lg sm:text-xl text-maryjo-dark">Fabula, intreccio e lo sguardo del lettore</h3>
-              </div>
-              <span id="meaning-icon-2" class="text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-muted">Tocca per aprire</span>
-            </div>
+            <h3>
+              <button id="meaning-btn-2" type="button" onclick="toggleSingleMeaningPoint(2)" aria-expanded="false" aria-controls="meaning-text-2" class="w-full flex items-center justify-between gap-3 text-left cursor-pointer rounded-lg">
+                <span class="flex items-center gap-3">
+                  <span class="w-9 h-9 rounded-full bg-maryjo text-white font-bold flex items-center justify-center shrink-0" aria-hidden="true">2</span>
+                  <span class="font-bold text-lg sm:text-xl text-maryjo-dark">Fabula, intreccio e lo sguardo del lettore</span>
+                </span>
+                <span id="meaning-icon-2" aria-hidden="true" class="text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-muted shrink-0">Tocca per aprire</span>
+              </button>
+            </h3>
             <p id="meaning-text-2" class="hidden mt-4 text-ink leading-relaxed">
-              Non c’è un ordine cronologico degli eventi. Ogni episodio potrebbe essere letto come un mondo a sé. Solo il lettore si rende conto che nei nuovi personaggi ritornano dei fili conduttori dei vecchi, andando avanti con la lettura.
+              Non c’è un ordine cronologico degli eventi: la <button type="button" class="term-btn" data-term="fabula" aria-haspopup="dialog">fabula</button> non coincide con l’<button type="button" class="term-btn" data-term="intreccio" aria-haspopup="dialog">intreccio</button>. Ogni episodio potrebbe essere letto come un mondo a sé. Solo il lettore si rende conto che nei nuovi personaggi ritornano dei <button type="button" class="term-btn" data-term="motivo" aria-haspopup="dialog">fili conduttori</button> dei vecchi, andando avanti con la lettura.
             </p>
           </div>
 
           <!-- Punto 3 -->
           <div
             id="meaning-point-3"
-            onclick="toggleSingleMeaningPoint(3)"
-            class="meaning-card rounded-xl border-2 border-dawn-border bg-paper/40 p-5 sm:p-6 cursor-pointer transition-all hover:border-malcolm"
+            class="meaning-card rounded-xl border-2 border-dawn-border bg-paper/40 p-5 sm:p-6 transition-all hover:border-malcolm"
           >
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-3">
-                <span class="w-9 h-9 rounded-full bg-malcolm text-white font-bold flex items-center justify-center shrink-0">3</span>
-                <h3 class="font-bold text-lg sm:text-xl text-malcolm">Dialoghi serrati e salvezza all’alba</h3>
-              </div>
-              <span id="meaning-icon-3" class="text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-muted">Tocca per aprire</span>
-            </div>
+            <h3>
+              <button id="meaning-btn-3" type="button" onclick="toggleSingleMeaningPoint(3)" aria-expanded="false" aria-controls="meaning-text-3" class="w-full flex items-center justify-between gap-3 text-left cursor-pointer rounded-lg">
+                <span class="flex items-center gap-3">
+                  <span class="w-9 h-9 rounded-full bg-malcolm text-white font-bold flex items-center justify-center shrink-0" aria-hidden="true">3</span>
+                  <span class="font-bold text-lg sm:text-xl text-malcolm">Dialoghi serrati e salvezza all’alba</span>
+                </span>
+                <span id="meaning-icon-3" aria-hidden="true" class="text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-muted shrink-0">Tocca per aprire</span>
+              </button>
+            </h3>
             <p id="meaning-text-3" class="hidden mt-4 text-ink leading-relaxed">
-              In tutti e tre i racconti, il rapporto tra i due protagonisti è costruito da dialoghi serrati e molto veloci, in cui i personaggi si raccontano, senza troppi giri di parole; in ogni occasione, in qualche modo, si salvano a vicenda sotto la luce dell’alba...
+              In tutti e tre i racconti, il rapporto tra i due protagonisti è costruito da <button type="button" class="term-btn" data-term="dialogo" aria-haspopup="dialog">dialoghi serrati</button> e molto veloci, in cui i personaggi si raccontano, senza troppi giri di parole; in ogni occasione, in qualche modo, si salvano a vicenda sotto la luce dell’alba...
             </p>
           </div>
         </div>
@@ -399,7 +521,7 @@
           La Mappa del Tempo: Fabula vs Intreccio
         </h1>
         <p class="text-muted mt-2 max-w-4xl">
-          Seleziona una Parte per osservare quali età dei due protagonisti si incontrano e come l’<strong>intreccio</strong> (l’ordine dei racconti nel libro) si incrocia con la <strong>fabula</strong> (l’ordine cronologico della loro vita).
+          Seleziona una Parte per osservare quali età dei due protagonisti si incontrano e come l’<strong><button type="button" class="term-btn" data-term="intreccio" aria-haspopup="dialog">intreccio</button></strong> (l’ordine dei racconti nel libro) si incrocia con la <strong><button type="button" class="term-btn" data-term="fabula" aria-haspopup="dialog">fabula</button></strong> (l’ordine cronologico della loro vita).
         </p>
 
         <!-- Pulsanti di selezione Parte 1, 2, 3 e Confronto completo -->
@@ -689,6 +811,92 @@
 
     </section>
 
+    <!-- ===================================================================== -->
+    <!-- SEZIONE 4: FILI CONDUTTORI E CITAZIONI CHIAVE                         -->
+    <!-- ===================================================================== -->
+    <section id="section-threads" class="hidden fade-section space-y-8" aria-labelledby="threads-title">
+
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm">
+        <span class="text-xs font-bold uppercase tracking-widest text-maryjo-dark">Collegamenti tra i racconti</span>
+        <h1 id="threads-title" class="font-serif text-3xl sm:text-4xl font-bold text-malcolm mt-1">I fili conduttori</h1>
+        <p class="text-muted mt-2 max-w-4xl">
+          Gli stessi luoghi, oggetti e gesti ritornano nelle tre Parti: sono i <button type="button" class="term-btn" data-term="motivo" aria-haspopup="dialog">motivi ricorrenti</button>. Chiedete alla classe in quali Parti compare ogni elemento, poi toccate la casella per scoprirlo.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-6">
+          <button type="button" onclick="revealAllThreads()" class="min-h-[48px] px-5 py-2.5 rounded-xl bg-malcolm text-white font-semibold hover:bg-malcolm-dark transition-all cursor-pointer shadow-sm">
+            Rivela tutta la tabella
+          </button>
+          <button type="button" onclick="resetThreads()" class="min-h-[48px] px-5 py-2.5 rounded-xl bg-white text-malcolm border-2 border-malcolm font-semibold hover:bg-malcolm-light transition-all cursor-pointer">
+            Nascondi di nuovo
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-4 sm:p-8 border border-dawn-border shadow-sm overflow-x-auto">
+        <table class="w-full min-w-[640px] border-separate border-spacing-2">
+          <caption class="sr-only">In quali Parti compare ogni filo conduttore</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="text-left text-sm font-bold uppercase tracking-wider text-muted px-2">Elemento</th>
+              <th scope="col" class="text-center text-sm font-bold uppercase tracking-wider text-muted px-2">Parte 1</th>
+              <th scope="col" class="text-center text-sm font-bold uppercase tracking-wider text-muted px-2">Parte 2</th>
+              <th scope="col" class="text-center text-sm font-bold uppercase tracking-wider text-muted px-2">Parte 3</th>
+            </tr>
+          </thead>
+          <tbody id="threads-table-body">
+            <!-- Popolato dinamicamente via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="thread-detail" aria-live="polite">
+        <!-- Popolato dinamicamente via JS -->
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm space-y-6">
+        <div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-malcolm">Citazioni chiave</h2>
+          <p class="text-muted mt-1">Leggete la frase insieme, poi usate la domanda per aprire la discussione. Con «Proietta» la citazione riempie lo schermo.</p>
+        </div>
+        <div id="quotes-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <!-- Popolato dinamicamente via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SEZIONE 5: VERIFICA RAPIDA                                            -->
+    <!-- ===================================================================== -->
+    <section id="section-quiz" class="hidden fade-section space-y-8" aria-labelledby="quiz-title">
+
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-maryjo-dark">Ripasso in classe</span>
+          <h1 id="quiz-title" class="font-serif text-3xl sm:text-4xl font-bold text-malcolm mt-1">Verifica rapida</h1>
+          <p class="text-muted mt-2 max-w-4xl">
+            Leggete la domanda ad alta voce, fate rispondere la classe, poi toccate una risposta: compare subito la soluzione con la spiegazione.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-dawn-border">
+          <div class="flex flex-wrap items-center gap-3" role="group" aria-label="Scegli il gruppo di domande">
+            <button id="quiz-tab-1" type="button" onclick="selectQuizSet('1')" class="quiz-tab min-h-[54px] px-6 py-3 rounded-xl font-bold text-base sm:text-lg border-2 transition-all cursor-pointer">Parte 1</button>
+            <button id="quiz-tab-2" type="button" onclick="selectQuizSet('2')" class="quiz-tab min-h-[54px] px-6 py-3 rounded-xl font-bold text-base sm:text-lg border-2 transition-all cursor-pointer">Parte 2</button>
+            <button id="quiz-tab-3" type="button" onclick="selectQuizSet('3')" class="quiz-tab min-h-[54px] px-6 py-3 rounded-xl font-bold text-base sm:text-lg border-2 transition-all cursor-pointer">Parte 3</button>
+            <button id="quiz-tab-link" type="button" onclick="selectQuizSet('link')" class="quiz-tab min-h-[54px] px-6 py-3 rounded-xl font-bold text-base sm:text-lg border-2 transition-all cursor-pointer">Collegamenti</button>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <span id="quiz-score" aria-live="polite" class="text-sm font-bold px-3.5 py-2 rounded-full bg-paper text-muted border border-dawn-border"></span>
+            <button type="button" onclick="revealQuizSolutions()" class="min-h-[48px] px-5 py-2.5 rounded-xl bg-malcolm text-white font-semibold hover:bg-malcolm-dark transition-all cursor-pointer shadow-sm">Mostra le soluzioni</button>
+            <button type="button" onclick="resetQuizSet()" class="min-h-[48px] px-5 py-2.5 rounded-xl bg-white text-malcolm border-2 border-malcolm font-semibold hover:bg-malcolm-light transition-all cursor-pointer">Ricomincia</button>
+          </div>
+        </div>
+      </div>
+
+      <ol id="quiz-list" class="space-y-5">
+        <!-- Popolato dinamicamente via JS -->
+      </ol>
+    </section>
+
   </main>
 
   <!-- FOOTER PULITO -->
@@ -698,6 +906,35 @@
       <span>Classe 1A LES • Liceo Economico Sociale</span>
     </div>
   </footer>
+
+  <!-- FINESTRA GLOSSARIO -->
+  <dialog id="glossary-dialog" aria-labelledby="glossary-title" class="w-[min(92vw,52rem)] max-h-[85vh] rounded-2xl border border-dawn-border bg-white text-ink shadow-xl">
+    <div class="sticky top-0 bg-white flex items-center justify-between gap-4 px-6 sm:px-8 py-4 border-b border-dawn-border">
+      <h2 id="glossary-title" class="font-serif text-2xl font-bold text-malcolm">Glossario di narratologia</h2>
+      <button type="button" onclick="closeDialog('glossary-dialog')" class="min-h-[44px] px-4 rounded-xl bg-malcolm text-white font-semibold hover:bg-malcolm-dark transition-all cursor-pointer">Chiudi</button>
+    </div>
+    <dl id="glossary-list" class="px-6 sm:px-8 py-6 space-y-4">
+      <!-- Popolato dinamicamente via JS -->
+    </dl>
+  </dialog>
+
+  <!-- FINESTRA CITAZIONE PROIETTATA -->
+  <dialog id="quote-dialog" aria-labelledby="quote-dialog-text" class="w-[min(96vw,72rem)] max-h-[92vh] rounded-2xl border border-dawn-border bg-ivory text-ink shadow-xl">
+    <div class="p-8 sm:p-14 space-y-8">
+      <blockquote id="quote-dialog-text" class="font-serif italic text-3xl sm:text-5xl leading-snug text-malcolm text-balance"></blockquote>
+      <p id="quote-dialog-source" class="text-lg font-bold text-maryjo-dark"></p>
+      <div class="rounded-xl bg-white border-2 border-maryjo-border p-5 sm:p-6">
+        <span class="text-sm font-bold uppercase tracking-wider text-maryjo-dark">Per la discussione</span>
+        <p id="quote-dialog-question" class="text-xl sm:text-2xl mt-1"></p>
+      </div>
+      <div class="flex justify-end">
+        <button type="button" onclick="closeDialog('quote-dialog')" class="min-h-[48px] px-6 rounded-xl bg-malcolm text-white font-semibold hover:bg-malcolm-dark transition-all cursor-pointer">Chiudi</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- VERSIONE DA STAMPARE (visibile solo in stampa / PDF) -->
+  <div id="print-summary" class="print-only"></div>
 
   <!-- DATI INTEGRALI E LOGICA INTERATTIVA -->
   <script>
@@ -744,7 +981,7 @@
           },
           {
             num: 4,
-            text: "Anche l’uomo racconta qualcosa di se stesso: dice che per lui si è “spazzato tutto” quando aveva tredici anni, davanti a “un fuoco che si era preso tutto”; dice che suo padre era un alcolista e un violento; dice di aver incontrato un uomo che gli ha insegnato a “rimettere le cose a posto”, perché “c’è sempre una casa da ricostruire” - ed è stato proprio questo uomo a insegnargli l’esattezza dei gesti, l’importanza di misurare bene (poi infatti è finito a costruire bilance)."
+            text: "Anche l’uomo racconta qualcosa di se stesso: dice che per lui si è “spezzato tutto” quando aveva tredici anni, davanti a “un fuoco che si era preso tutto”; dice che suo padre era un alcolista e un violento; dice di aver incontrato un uomo che gli ha insegnato a “rimettere le cose a posto”, perché “c’è sempre una casa da ricostruire” - ed è stato proprio questo uomo a insegnargli l’esattezza dei gesti, l’importanza di misurare bene (poi infatti è finito a costruire bilance)."
           },
           {
             num: 5,
@@ -895,10 +1132,401 @@
     };
 
     /**
+     * FILI CONDUTTORI: in quali Parti ritorna ogni elemento (null = non compare)
+     */
+    const THREADS = [
+      {
+        id: 'albergo',
+        label: 'L’albergo e la hall',
+        question: 'Ogni incontro avviene in un albergo, un luogo di passaggio dove nessuno abita davvero. Perché Baricco avrà scelto proprio questo luogo?',
+        parts: {
+          1: 'Una hall di «un’eleganza un po’ appannata», con porta girevole, pianoforte e pendola.',
+          2: 'Un hotel squallido di periferia: Malcolm è il portiere di notte.',
+          3: 'Una stanza squallida d’albergo («la moquette lercia e i puzzle inquadrati alle pareti») da cui Mary Jo porta via Malcolm.'
+        }
+      },
+      {
+        id: 'alba',
+        label: 'L’alba',
+        question: 'In tutte e tre le Parti l’alba arriva insieme a una salvezza. Che cosa viene salvato ogni volta, e da chi?',
+        parts: {
+          1: 'Alle 4:12 del mattino comincia l’incontro; all’alba arriva la polizia.',
+          2: 'Mary Jo fugge «approfittando della luce dell’alba, la luce giusta per tornare a casa».',
+          3: '«Si chiama alba, quella. Ce l’abbiamo fatta, signorino.»'
+        }
+      },
+      {
+        id: 'pistola',
+        label: 'La pistola',
+        question: 'La pistola passa di mano in mano: padre, Malcolm, Mary Jo. Che cosa rappresenta ogni volta?',
+        parts: {
+          1: 'Mary Jo trova la pistola di Malcolm nella tasca della giacca: «Tutto a posto, ce l’ho io».',
+          2: 'Malcolm ha ucciso lo strozzino con un solo colpo e girava con la pistola in tasca per uccidersi.',
+          3: 'Il padre di Malcolm beveva «con la pistola appoggiata lì vicino». Mary Jo ha smesso di usare la sua.'
+        }
+      },
+      {
+        id: 'fuoco',
+        label: 'Il fuoco e la casa',
+        question: 'Malcolm dice che «c’è sempre una casa da ricostruire». Quali case vengono perse e quali ritrovate nei tre racconti?',
+        parts: {
+          1: 'Per Malcolm si è «spezzato tutto» davanti a «un fuoco che si era preso tutto»; «c’è sempre una casa da ricostruire».',
+          2: 'Malcolm ha ucciso per difendere la sua casa e i suoi figli, ma uscito dal carcere è rimasto senza casa.',
+          3: 'Malcolm racconta l’incendio della casa. Mary Jo: «sono sempre scappata quando la casa andava a fuoco».'
+        }
+      },
+      {
+        id: 'luce-blu',
+        label: 'Le luci blu della polizia',
+        question: 'Perché la luce blu turba Malcolm nella Parte 3? Che cosa significherà per lui nella Parte 1?',
+        parts: {
+          1: 'Dalla finestra Malcolm vede tre auto della polizia con le luci blu lampeggianti.',
+          2: null,
+          3: 'Malcolm chiede di togliere il lampeggiante: «C’erano tutte luci così, davanti a casa».'
+        }
+      },
+      {
+        id: 'occhi',
+        label: 'Gli occhi «come di lupo»',
+        question: 'Questo dettaglio fisico è un indizio: a che cosa serve al lettore, visto che nella Parte 1 la donna non ha un nome?',
+        parts: {
+          1: '«Solo in quel momento si accorse dei suoi occhi, che aveva chiari, ma grigi, come di lupo.»',
+          2: 'La ragazzina ha «occhi chiari, ma grigi, come da lupa».',
+          3: null
+        }
+      },
+      {
+        id: 'gesti',
+        label: 'L’esattezza dei gesti',
+        question: 'Un uomo ha insegnato a Malcolm a «rimettere le cose a posto». Nella Parte 3 Jonathan costruisce barche una a una: potrebbe essere lui?',
+        parts: {
+          1: 'Un uomo gli ha insegnato l’esattezza dei gesti e a misurare bene: per questo costruisce bilance.',
+          2: 'Malcolm osserva ogni dettaglio (i piedi uniti sui tacchi) e racconta di aver sparato un solo colpo.',
+          3: 'Jonathan costruisce piccole barche di legno artigianali, una a una.'
+        }
+      },
+      {
+        id: 'figlio',
+        label: 'Il figlio di Mary Jo',
+        question: 'Mettete in ordine cronologico (fabula) i tre momenti della storia del figlio di Mary Jo.',
+        parts: {
+          1: 'Ha avuto un figlio a diciassette anni e lo ha lasciato a sua madre.',
+          2: 'Mike urla che lei è incinta.',
+          3: 'Ha un figlio che non vede da anni, perché non era «buona a fare la madre».'
+        }
+      },
+      {
+        id: 'alcol',
+        label: 'L’alcol',
+        question: 'Malcolm rifiuta sempre di bere. Che cosa scopriamo nella Parte 3 che spiega questa scelta?',
+        parts: {
+          1: 'Malcolm rifiuta la birra per restare lucido fino all’ultimo.',
+          2: 'Non tocca alcol perché è in libertà vigilata.',
+          3: 'Il padre di Malcolm, alcolista, beveva vino con la pistola sul tavolo.'
+        }
+      },
+      {
+        id: 'ricominciare',
+        label: 'Scappare e ricominciare',
+        question: 'Scappare è sempre una sconfitta? Confrontate il «cambiare tavolo da gioco» della Parte 1 con le fughe delle Parti 2 e 3.',
+        parts: {
+          1: 'Mary Jo consiglia di mollare tutto e «cambiare tavolo da gioco».',
+          2: 'Malcolm fa scappare Mary Jo dall’albergo e la mette su un autobus.',
+          3: 'Mary Jo è diventata poliziotta per ricominciare da capo e porta via Malcolm verso il mare.'
+        }
+      }
+    ];
+
+    /**
+     * CITAZIONI CHIAVE CON DOMANDA PER LA DISCUSSIONE
+     */
+    const QUOTES = [
+      {
+        text: 'C’è sempre una casa da ricostruire.',
+        source: 'Malcolm • Parte 1',
+        part: 1,
+        question: 'Che cosa vuol dire «ricostruire una casa» per chi, come Malcolm, l’ha vista bruciare?'
+      },
+      {
+        text: 'Come si è da piccoli si è tutta la vita.',
+        source: 'La donna (Mary Jo) • Parte 1',
+        part: 1,
+        question: 'Questa frase è vera per Malcolm? Rispondete pensando a ciò che scopriamo di lui nella Parte 3.'
+      },
+      {
+        text: 'Cambiare tavolo da gioco.',
+        source: 'La donna (Mary Jo) • Parte 1',
+        part: 1,
+        question: 'Secondo Mary Jo ricominciare da capo non cambia chi siamo, ma il «tavolo» su cui giochiamo. Siete d’accordo?'
+      },
+      {
+        text: 'La luce in cui si abita da giovani sarà la luce in cui si vivrà per sempre.',
+        source: 'Il portiere (Malcolm) • Parte 2',
+        part: 2,
+        question: 'Quale «luce» ha accompagnato la giovinezza di Malcolm? E quella di Mary Jo?'
+      },
+      {
+        text: 'La luce giusta per tornare a casa.',
+        source: 'Parte 2',
+        part: 2,
+        question: 'Perché proprio l’alba è «la luce giusta»? Che cosa ha di diverso dalla notte?'
+      },
+      {
+        text: 'Una casa non brucia da sola.',
+        source: 'Malcolm, 13 anni • Parte 3',
+        part: 3,
+        question: 'Malcolm cerca un colpevole per l’incendio. Che cosa ci dice questa frase del suo bisogno di verità?'
+      },
+      {
+        text: 'Sono sempre scappata quando la casa andava a fuoco, giuro, sono scappata un sacco di volte, non ho fatto altro che scappare.',
+        source: 'Detective Pearson (Mary Jo) • Parte 3',
+        part: 3,
+        question: 'I genitori di Malcolm non sono scappati dal fuoco, Mary Jo sì. Chi dei due si è salvato?'
+      },
+      {
+        text: 'Quando uno ha bisogno di piangere lo deve fare, inutile stare lì a farsi tanti problemi. Dopo va tutto meglio.',
+        source: 'Detective Pearson (Mary Jo) • Parte 3',
+        part: 3,
+        question: 'Che cosa insegna Mary Jo a Malcolm in questo momento, senza fare nessuna lezione?'
+      },
+      {
+        text: 'Non è neanche detto che se ami davvero qualcuno, ma tanto, la cosa migliore che puoi farci insieme sia vivere.',
+        source: 'Detective Pearson (Mary Jo) • Parte 3',
+        part: 3,
+        question: 'Mary Jo e Jonathan non hanno mai vissuto insieme. Si può amare qualcuno senza vivere con lui?'
+      }
+    ];
+
+    /**
+     * VERIFICA RAPIDA: answer = indice della risposta corretta
+     */
+    const QUIZ_DATA = {
+      '1': [
+        {
+          q: 'A che ora si incontrano i due protagonisti nella hall?',
+          options: ['A mezzanotte', 'Alle 4:12 del mattino', 'Alle 6:30, all’alba'],
+          answer: 1,
+          explain: 'Il racconto si apre con un orario preciso: sono le 4:12 del mattino.'
+        },
+        {
+          q: 'Che cosa produce la fabbrica di Malcolm?',
+          options: ['Profumi', 'Barche di legno', 'Bilance'],
+          answer: 2,
+          explain: 'Malcolm costruisce bilance di precisione. I profumi sono il suo hobby; le barche le costruisce Jonathan (Parte 3).'
+        },
+        {
+          q: 'Vero o falso? La donna ha una camera nello stesso albergo.',
+          options: ['Vero', 'Falso'],
+          answer: 1,
+          explain: 'Falso: dalle sue parole Malcolm capisce che lei non ha una camera in quell’albergo.'
+        },
+        {
+          q: 'Che cosa trova la donna nella tasca della giacca di Malcolm?',
+          options: ['Una lettera', 'Una pistola', 'Le chiavi della camera'],
+          answer: 1,
+          explain: 'Trova la pistola di Malcolm e la stringe: «Tutto a posto, ce l’ho io».'
+        },
+        {
+          q: 'Chi è davvero la donna in abito giallo?',
+          options: ['Un’agente di polizia in borghese', 'La moglie di Malcolm', 'La proprietaria dell’albergo'],
+          answer: 0,
+          explain: 'Il finale lo rivela: il poliziotto le chiede della pistola senza sorpresa, perché è una collega in borghese.'
+        }
+      ],
+      '2': [
+        {
+          q: 'Quanti anni ha davvero la ragazza?',
+          options: ['16 anni', '18 anni', '21 anni'],
+          answer: 0,
+          explain: 'Sul modulo ha scritto diciotto, ma confessa al portiere di averne sedici.'
+        },
+        {
+          q: 'Vero o falso? Il portiere ha passato tredici anni in carcere.',
+          options: ['Vero', 'Falso'],
+          answer: 0,
+          explain: 'Vero: ha scontato tredici anni per aver ucciso un uomo con un solo colpo di pistola.'
+        },
+        {
+          q: 'Perché il portiere aveva ucciso quell’uomo?',
+          options: ['Per rapinarlo', 'Era uno strozzino che minacciava la sua famiglia', 'Per errore, durante una lite'],
+          answer: 1,
+          explain: 'Doveva molti soldi a uno strozzino che aveva cominciato a minacciare i suoi figli.'
+        },
+        {
+          q: 'Come riesce a fuggire Mary Jo?',
+          options: ['Con l’auto di Mike', 'Su un taxi', 'Su un autobus fermato al volo'],
+          answer: 2,
+          explain: 'Il portiere ferma un autobus e la fa salire all’ultimo secondo, restando a terra per affrontare Mike.'
+        },
+        {
+          q: 'Che cosa vuole tenere Mary Jo come souvenir?',
+          options: ['La chiave della camera', 'Gli asciugamani bianchi', 'Il modulo dell’albergo'],
+          answer: 1,
+          explain: 'Ha il vezzo di rubare gli asciugamani degli alberghi: alla fine restano puliti alla fermata dell’autobus.'
+        }
+      ],
+      '3': [
+        {
+          q: 'Quanti giorni mancano alla pensione della Detective Pearson?',
+          options: ['Quattro', 'Dieci', 'Un mese'],
+          answer: 0,
+          explain: '«Ho ormai solo quattro giorni prima della pensione. Voglio farlo bene, e a modo mio.»'
+        },
+        {
+          q: 'Perché Malcolm chiede di togliere la luce blu dal tetto dell’auto?',
+          options: ['Lo abbaglia', 'Gli ricorda le luci davanti alla casa in fiamme', 'Ha paura di essere riconosciuto'],
+          answer: 1,
+          explain: '«C’erano tutte luci così, davanti a casa»: la luce blu riporta il ricordo dell’incendio.'
+        },
+        {
+          q: 'Vero o falso? La Detective Pearson usa spesso la pistola nel suo lavoro.',
+          options: ['Vero', 'Falso'],
+          answer: 1,
+          explain: 'Falso: ha smesso di usarla ed è diventata l’agente che mandano a parlare con chi è «sul cornicione».'
+        },
+        {
+          q: 'Dove porta Malcolm la detective?',
+          options: ['Dallo zio al Nord', 'In commissariato', 'Nella casa sul mare di Jonathan'],
+          answer: 2,
+          explain: 'Lo porta nell’unico «posto bello» che conosce: la casa sul mare di Jonathan.'
+        },
+        {
+          q: 'Che cosa costruisce Jonathan?',
+          options: ['Bilance', 'Piccole barche di legno', 'Case'],
+          answer: 1,
+          explain: 'Costruisce barche artigianali una a una; su una ha scritto il nome di lei in undici posti nascosti.'
+        }
+      ],
+      'link': [
+        {
+          q: 'In quale Parte Malcolm è più giovane?',
+          options: ['Parte 1', 'Parte 2', 'Parte 3'],
+          answer: 2,
+          explain: 'Nella Parte 3 ha 13 anni: è l’analessi che racconta l’origine del suo trauma.'
+        },
+        {
+          q: 'Nella Parte 2 Malcolm racconta di essere stato fermato all’alba, in un albergo, da poliziotti abili e garbati. Quale Parte racconta quell’arresto?',
+          options: ['La Parte 1', 'La Parte 3', 'Nessuna: non viene raccontato'],
+          answer: 0,
+          explain: 'È l’arresto della Parte 1: la poliziotta abile e garbata era proprio Mary Jo.'
+        },
+        {
+          q: 'Vero o falso? Il bambino che Mary Jo aspetta nella Parte 2 è lo stesso figlio di cui parla nelle Parti 1 e 3.',
+          options: ['Vero', 'Falso'],
+          answer: 0,
+          explain: 'Vero: a 16 anni è incinta, lo partorisce a 17, lo lascia a sua madre e da adulta non lo vede da anni.'
+        },
+        {
+          q: 'Qual è l’ordine della fabula, cioè cronologico, nella vita di Malcolm?',
+          options: ['Parte 1 → Parte 2 → Parte 3', 'Parte 3 → Parte 1 → Parte 2', 'Parte 2 → Parte 3 → Parte 1'],
+          answer: 1,
+          explain: '13 anni (Parte 3) → 42 anni (Parte 1) → 60 anni (Parte 2).'
+        },
+        {
+          q: 'Qual è l’ordine della fabula nella vita di Mary Jo?',
+          options: ['Parte 2 → Parte 1 → Parte 3', 'Parte 1 → Parte 2 → Parte 3', 'Parte 3 → Parte 2 → Parte 1'],
+          answer: 0,
+          explain: '16 anni (Parte 2) → adulta, circa 42 anni (Parte 1) → 56 anni (Parte 3).'
+        }
+      ]
+    };
+
+    /**
+     * GLOSSARIO DI NARRATOLOGIA
+     */
+    const GLOSSARY = [
+      {
+        id: 'fabula',
+        term: 'Fabula',
+        def: 'L’ordine cronologico in cui i fatti accadono davvero, dal primo all’ultimo.',
+        example: 'Nella vita di Malcolm: 13 anni → 42 anni → 60 anni.'
+      },
+      {
+        id: 'intreccio',
+        term: 'Intreccio',
+        def: 'L’ordine in cui l’autore sceglie di raccontare i fatti al lettore. Può essere diverso dalla fabula.',
+        example: 'Baricco racconta prima Malcolm a 42 anni (Parte 1), poi a 60 (Parte 2), infine a 13 (Parte 3).'
+      },
+      {
+        id: 'presente-narrativo',
+        term: 'Presente narrativo',
+        def: 'Il «tempo zero» del racconto: il momento da cui si misurano i salti indietro e in avanti.',
+        example: 'La Parte 1, quando i due protagonisti sono adulti e hanno più o meno la stessa età.'
+      },
+      {
+        id: 'analessi',
+        term: 'Analessi (flashback)',
+        def: 'Un salto indietro nel tempo: si raccontano fatti avvenuti prima del presente narrativo.',
+        example: 'Nella Parte 2 Mary Jo ha 16 anni: è più giovane che nella Parte 1.'
+      },
+      {
+        id: 'prolessi',
+        term: 'Prolessi (flashforward)',
+        def: 'Un salto in avanti nel tempo: si anticipano fatti che avverranno dopo il presente narrativo.',
+        example: 'Nella Parte 2 Malcolm ha 60 anni: è già uscito dal carcere dopo l’arresto della Parte 1.'
+      },
+      {
+        id: 'narratore',
+        term: 'Narratore',
+        def: 'La voce che racconta la storia. Può essere un personaggio (narratore interno) o una voce fuori dalla vicenda (narratore esterno).',
+        example: 'Qui il narratore è esterno e spesso chiama i protagonisti solo «l’uomo» e «la donna»: il lettore deve riconoscerli dagli indizi.'
+      },
+      {
+        id: 'sequenza',
+        term: 'Sequenza',
+        def: 'Una parte di testo con un senso compiuto: un’azione, un dialogo, una descrizione o una riflessione.',
+        example: 'Nella sezione «I 3 Racconti» ogni Parte è divisa in quattro tappe.'
+      },
+      {
+        id: 'dialogo',
+        term: 'Sequenza dialogica',
+        def: 'Una sequenza in cui i personaggi parlano tra loro con il discorso diretto. Rende la scena veloce e fa conoscere i personaggi dalle loro parole.',
+        example: 'I tre incontri sono costruiti quasi solo con dialoghi serrati.'
+      },
+      {
+        id: 'motivo',
+        term: 'Motivo ricorrente (filo conduttore)',
+        def: 'Un oggetto, un’immagine o un tema che ritorna più volte nell’opera e collega parti diverse.',
+        example: 'La pistola, il fuoco, l’alba, gli occhi «come di lupo».'
+      }
+    ];
+
+    const AUTO_LINKED_TERMS = [
+      ['analessi', /\b(analessi)\b/i],
+      ['prolessi', /\b(prolessi)\b/i],
+      ['presente-narrativo', /\b(presente narrativo)\b/i]
+    ];
+
+    function termButton(termId, label) {
+      return `<button type="button" class="term-btn" data-term="${termId}" aria-haspopup="dialog">${label}</button>`;
+    }
+
+    // Collega al glossario la prima occorrenza di ogni termine tecnico nel testo
+    function linkTerms(text) {
+      return AUTO_LINKED_TERMS.reduce(
+        (result, [termId, pattern]) => result.replace(pattern, match => termButton(termId, match)),
+        text
+      );
+    }
+
+    const SECTION_KEYS = ['intro', 'timeline', 'stories', 'threads', 'quiz'];
+    const SECTION_HASHES = {
+      intro: 'introduzione',
+      timeline: 'mappa',
+      stories: 'racconti',
+      threads: 'fili',
+      quiz: 'verifica'
+    };
+
+    /**
      * STATO DELL'APPLICAZIONE
      */
     const appState = {
-      currentSection: 'intro',     // 'intro' | 'timeline' | 'stories'
+      threadsRevealed: {},         // { 'pistola-1': true, ... }
+      selectedThreadId: null,
+      quizSet: '1',                // '1' | '2' | '3' | 'link'
+      quizAnswers: {},             // { '1-0': indiceScelto }
+      currentSection: 'intro',     // 'intro' | 'timeline' | 'stories' | 'threads' | 'quiz'
       fontSize: 'md',              // 'sm' (18px) | 'md' (20px) | 'lg' (24px)
       meaningOpen: true,
       meaningPoints: { 1: true, 2: false, 3: false },
@@ -925,40 +1553,94 @@
         btn.classList.add('text-ink', 'hover:bg-white');
       });
 
+      document.querySelectorAll('.font-btn').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+
       const activeBtn = document.getElementById(`font-${sizeKey}`);
       if (activeBtn) {
         activeBtn.classList.remove('text-ink', 'hover:bg-white');
         activeBtn.classList.add('bg-malcolm', 'text-white', 'shadow-sm');
+        activeBtn.setAttribute('aria-pressed', 'true');
+      }
+
+      try { localStorage.setItem('tva-font-size', sizeKey); } catch (e) { /* preferenza non salvabile */ }
+    }
+
+    function setToggleStyle(btn, isActive) {
+      if (!btn) return;
+      if (isActive) {
+        btn.classList.remove('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
+        btn.classList.add('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
+      } else {
+        btn.classList.remove('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
+        btn.classList.add('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
       }
     }
 
     /**
-     * NAVIGAZIONE TRA LE 3 SEZIONI PRINCIPALI
+     * NAVIGAZIONE TRA LE 5 SEZIONI PRINCIPALI
      */
-    function switchMainSection(sectionKey) {
+    function switchMainSection(sectionKey, options = {}) {
+      const changed = appState.currentSection !== sectionKey;
       appState.currentSection = sectionKey;
 
-      ['intro', 'timeline', 'stories'].forEach(key => {
+      SECTION_KEYS.forEach(key => {
         const secEl = document.getElementById(`section-${key}`);
-        const navBtn = document.getElementById(`nav-${key}`);
+        const navLink = document.getElementById(`nav-${key}`);
+        const isActive = key === sectionKey;
 
-        if (key === sectionKey) {
-          secEl.classList.remove('hidden');
-          // Forza riavvio animazione fade-section
-          secEl.classList.remove('fade-section');
-          void secEl.offsetWidth;
-          secEl.classList.add('fade-section');
-
-          navBtn.classList.remove('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
-          navBtn.classList.add('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
+        if (isActive) {
+          if (secEl.classList.contains('hidden') || changed) {
+            secEl.classList.remove('hidden');
+            secEl.classList.remove('fade-section');
+            void secEl.offsetWidth;
+            secEl.classList.add('fade-section');
+          }
+          navLink.setAttribute('aria-current', 'page');
         } else {
           secEl.classList.add('hidden');
-          navBtn.classList.remove('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
-          navBtn.classList.add('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
+          navLink.removeAttribute('aria-current');
         }
+        setToggleStyle(navLink, isActive);
       });
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (changed && !options.keepScroll) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      if (changed && options.focus) {
+        document.getElementById('contenuto').focus({ preventScroll: true });
+      }
+    }
+
+    /**
+     * INDIRIZZI DELLE SCHEDE: #introduzione, #mappa, #racconti-1..3, #fili, #verifica
+     */
+    function currentHash() {
+      if (appState.currentSection === 'stories') return `racconti-${appState.currentPart}`;
+      return SECTION_HASHES[appState.currentSection];
+    }
+
+    function updateHash() {
+      const hash = currentHash();
+      if (location.hash.slice(1) !== hash) {
+        history.replaceState(null, '', `#${hash}`);
+      }
+    }
+
+    function routeFromHash(isInitial = false) {
+      const hash = decodeURIComponent(location.hash.slice(1));
+      const storyMatch = hash.match(/^racconti(?:-([123]))?$/);
+
+      if (storyMatch) {
+        switchMainSection('stories', { focus: !isInitial });
+        const part = Number(storyMatch[1] || 1);
+        if (part !== appState.currentPart || isInitial) selectStoryPart(part);
+        else updateHash();
+        return;
+      }
+
+      const sectionKey = Object.keys(SECTION_HASHES).find(key => SECTION_HASHES[key] === hash) || 'intro';
+      switchMainSection(sectionKey, { focus: !isInitial });
+      if (!hash) updateHash();
     }
 
     /**
@@ -976,6 +1658,7 @@
         body.classList.add('hidden');
         btn.textContent = 'Apri pannello';
       }
+      btn.setAttribute('aria-expanded', String(appState.meaningOpen));
     }
 
     function toggleSingleMeaningPoint(num) {
@@ -986,7 +1669,9 @@
     function revealAllMeaningPoints() {
       appState.meaningOpen = true;
       document.getElementById('meaning-panel-body').classList.remove('hidden');
-      document.getElementById('btn-toggle-meaning').textContent = 'Chiudi pannello';
+      const toggleBtn = document.getElementById('btn-toggle-meaning');
+      toggleBtn.textContent = 'Chiudi pannello';
+      toggleBtn.setAttribute('aria-expanded', 'true');
 
       appState.meaningPoints = { 1: true, 2: true, 3: true };
       renderMeaningPoints();
@@ -998,6 +1683,7 @@
         const card = document.getElementById(`meaning-point-${num}`);
         const text = document.getElementById(`meaning-text-${num}`);
         const icon = document.getElementById(`meaning-icon-${num}`);
+        document.getElementById(`meaning-btn-${num}`).setAttribute('aria-expanded', String(isOpen));
 
         if (isOpen) {
           text.classList.remove('hidden');
@@ -1005,16 +1691,16 @@
           card.classList.remove('border-dawn-border', 'bg-paper/40');
           if (num === 2) {
             card.classList.add('border-maryjo-border', 'bg-maryjo-light/50');
-            icon.className = 'text-sm font-bold px-3 py-1 rounded-lg bg-white border border-maryjo-border text-maryjo-dark';
+            icon.className = 'text-sm font-bold px-3 py-1 rounded-lg bg-white border border-maryjo-border text-maryjo-dark shrink-0';
           } else {
             card.classList.add('border-malcolm-border', 'bg-malcolm-light/40');
-            icon.className = 'text-sm font-bold px-3 py-1 rounded-lg bg-white border border-malcolm-border text-malcolm';
+            icon.className = 'text-sm font-bold px-3 py-1 rounded-lg bg-white border border-malcolm-border text-malcolm shrink-0';
           }
         } else {
           text.classList.add('hidden');
           icon.textContent = 'Tocca per aprire';
-          icon.className = 'text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-muted';
-          card.className = 'meaning-card rounded-xl border-2 border-dawn-border bg-paper/40 p-5 sm:p-6 cursor-pointer transition-all hover:border-malcolm';
+          icon.className = 'text-sm font-bold px-3 py-1 rounded-lg bg-white border border-dawn-border text-muted shrink-0';
+          card.className = 'meaning-card rounded-xl border-2 border-dawn-border bg-paper/40 p-5 sm:p-6 transition-all hover:border-malcolm';
         }
       });
     }
@@ -1028,13 +1714,8 @@
       // Aggiorna stile pulsanti
       ['1', '2', '3', 'all'].forEach(m => {
         const btn = document.getElementById(`map-btn-${m}`);
-        if (m === mode) {
-          btn.classList.remove('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
-          btn.classList.add('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
-        } else {
-          btn.classList.remove('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
-          btn.classList.add('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
-        }
+        setToggleStyle(btn, m === mode);
+        btn.setAttribute('aria-pressed', String(m === mode));
       });
 
       // Aggiorna opacità connettori SVG
@@ -1169,7 +1850,10 @@
         `
       };
 
-      expBox.innerHTML = cardsHTML[mode];
+      expBox.innerHTML = cardsHTML[mode]
+        .replace('Presente narrativo (Malcolm', `${termButton('presente-narrativo', 'Presente narrativo')} (Malcolm`)
+        .replace(/(Prolessi) \/ flashforward per/, `${termButton('prolessi', '$1')} / flashforward per`)
+        .replace(/(Analessi) \/ flashback per/, `${termButton('analessi', '$1')} / flashback per`);
     }
 
     /**
@@ -1183,16 +1867,12 @@
       // Aggiorna stato pulsanti Parte 1 / 2 / 3
       [1, 2, 3].forEach(num => {
         const btn = document.getElementById(`part-tab-${num}`);
-        if (num === partNum) {
-          btn.classList.remove('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
-          btn.classList.add('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
-        } else {
-          btn.classList.remove('bg-malcolm', 'text-white', 'border-malcolm', 'shadow-sm');
-          btn.classList.add('bg-white', 'text-ink', 'border-dawn-border', 'hover:border-malcolm');
-        }
+        setToggleStyle(btn, num === partNum);
+        btn.setAttribute('aria-pressed', String(num === partNum));
       });
 
       renderStoryContent();
+      if (appState.currentSection === 'stories') updateHash();
     }
 
     function setIsolateMode(isolate) {
@@ -1252,6 +1932,8 @@
         btnIso.className = 'min-h-[46px] px-4 py-2 rounded-lg font-bold text-sm transition-all cursor-pointer bg-maryjo text-white shadow-sm';
         btnAll.className = 'min-h-[46px] px-4 py-2 rounded-lg font-semibold text-sm transition-all cursor-pointer text-ink hover:bg-white';
       }
+      btnAll.setAttribute('aria-pressed', String(!appState.isolateStepMode));
+      btnIso.setAttribute('aria-pressed', String(appState.isolateStepMode));
 
       // 3. Render Nodi delle Tappe
       const stepsGrid = document.getElementById('story-steps-grid');
@@ -1263,7 +1945,9 @@
 
         return `
           <button
+            type="button"
             onclick="toggleStepSelection(${idx})"
+            aria-pressed="${isActive}"
             class="step-node text-left p-5 rounded-xl border-2 flex flex-col justify-between gap-3 cursor-pointer min-h-[128px] ${
               isActive
                 ? 'active'
@@ -1375,7 +2059,7 @@
                 <h3 class="font-serif text-2xl font-bold text-malcolm">${mData.name}</h3>
               </div>
               <span class="inline-block px-3.5 py-1.5 rounded-xl bg-malcolm-light text-malcolm font-bold text-xs sm:text-sm border border-malcolm-border">
-                ${mData.temporalBadge}
+                ${linkTerms(mData.temporalBadge)}
               </span>
             </div>
             <p class="text-ink leading-relaxed">
@@ -1393,7 +2077,7 @@
                 <h3 class="font-serif text-2xl font-bold text-maryjo-dark">${mjData.name}</h3>
               </div>
               <span class="inline-block px-3.5 py-1.5 rounded-xl bg-maryjo-light text-maryjo-dark font-bold text-xs sm:text-sm border border-maryjo-border">
-                ${mjData.temporalBadge}
+                ${linkTerms(mjData.temporalBadge)}
               </span>
             </div>
             <p class="text-ink leading-relaxed">
@@ -1405,14 +2089,364 @@
     }
 
     /**
+     * SEZIONE 4: FILI CONDUTTORI
+     */
+    const PART_CELL_STYLES = {
+      1: 'bg-emerald-50 border-emerald-700/40 text-emerald-900',
+      2: 'bg-maryjo-light border-maryjo-border text-maryjo-dark',
+      3: 'bg-malcolm-light border-malcolm-border text-malcolm'
+    };
+
+    function renderThreads() {
+      const body = document.getElementById('threads-table-body');
+      body.innerHTML = THREADS.map(thread => {
+        const isSelected = appState.selectedThreadId === thread.id;
+        const cells = [1, 2, 3].map(part => {
+          const key = `${thread.id}-${part}`;
+          const isRevealed = appState.threadsRevealed[key];
+          const appears = Boolean(thread.parts[part]);
+          let content;
+          let style;
+          if (!isRevealed) {
+            content = '?';
+            style = 'bg-paper border-dawn-border text-muted hover:border-malcolm';
+          } else if (appears) {
+            content = 'Sì';
+            style = PART_CELL_STYLES[part];
+          } else {
+            content = 'No';
+            style = 'bg-white border-dawn-border text-muted line-through';
+          }
+          return `
+            <td class="p-0">
+              <button type="button" onclick="revealThreadCell('${thread.id}', ${part})"
+                aria-label="${thread.label}, Parte ${part}: ${isRevealed ? (appears ? 'compare' : 'non compare') : 'da scoprire'}"
+                class="w-full min-h-[52px] rounded-xl border-2 font-bold text-lg transition-all cursor-pointer ${style}">
+                ${content}
+              </button>
+            </td>`;
+        }).join('');
+
+        return `
+          <tr>
+            <th scope="row" class="p-0 text-left">
+              <button type="button" onclick="selectThread('${thread.id}')" aria-pressed="${isSelected}"
+                class="w-full min-h-[52px] px-4 rounded-xl border-2 text-left font-semibold transition-all cursor-pointer ${
+                  isSelected ? 'bg-malcolm text-white border-malcolm' : 'bg-white text-ink border-dawn-border hover:border-malcolm'
+                }">
+                ${thread.label}
+              </button>
+            </th>
+            ${cells}
+          </tr>`;
+      }).join('');
+
+      renderThreadDetail();
+    }
+
+    function renderThreadDetail() {
+      const container = document.getElementById('thread-detail');
+      const thread = THREADS.find(t => t.id === appState.selectedThreadId);
+      if (!thread) {
+        container.innerHTML = `
+          <p class="rounded-2xl border-2 border-dashed border-dawn-border bg-white/60 p-6 text-muted text-center">
+            Tocca il nome di un elemento per vedere dove compare e la domanda per la classe.
+          </p>`;
+        return;
+      }
+
+      const partCards = [1, 2, 3].map(part => {
+        const isRevealed = appState.threadsRevealed[`${thread.id}-${part}`];
+        const text = thread.parts[part];
+        let body;
+        if (!isRevealed) body = '<span class="text-muted italic">Ancora da scoprire.</span>';
+        else if (text) body = text;
+        else body = '<span class="text-muted italic">Non compare in questa Parte.</span>';
+        return `
+          <div class="rounded-xl border-2 p-4 ${isRevealed && text ? PART_CELL_STYLES[part] : 'bg-paper/60 border-dawn-border'}">
+            <span class="block text-xs font-bold uppercase tracking-wider mb-1">Parte ${part}</span>
+            <p class="text-ink leading-relaxed">${body}</p>
+          </div>`;
+      }).join('');
+
+      container.innerHTML = `
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border-2 border-malcolm-border shadow-sm space-y-5 fade-section">
+          <h2 class="font-serif text-2xl font-bold text-malcolm">${thread.label}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">${partCards}</div>
+          <div class="rounded-xl bg-maryjo-light/60 border border-maryjo-border p-5">
+            <span class="text-sm font-bold uppercase tracking-wider text-maryjo-dark">Domanda per la classe</span>
+            <p class="text-ink mt-1 text-lg">${thread.question}</p>
+          </div>
+        </div>`;
+    }
+
+    function selectThread(threadId) {
+      appState.selectedThreadId = appState.selectedThreadId === threadId ? null : threadId;
+      renderThreads();
+    }
+
+    function revealThreadCell(threadId, part) {
+      appState.threadsRevealed[`${threadId}-${part}`] = true;
+      appState.selectedThreadId = threadId;
+      renderThreads();
+    }
+
+    function revealAllThreads() {
+      THREADS.forEach(thread => [1, 2, 3].forEach(part => {
+        appState.threadsRevealed[`${thread.id}-${part}`] = true;
+      }));
+      renderThreads();
+    }
+
+    function resetThreads() {
+      appState.threadsRevealed = {};
+      appState.selectedThreadId = null;
+      renderThreads();
+    }
+
+    function renderQuotes() {
+      document.getElementById('quotes-grid').innerHTML = QUOTES.map((quote, idx) => `
+        <figure class="rounded-xl border-2 p-5 sm:p-6 flex flex-col justify-between gap-4 ${PART_CELL_STYLES[quote.part]}">
+          <blockquote class="font-serif italic text-xl leading-snug text-ink">«${quote.text}»</blockquote>
+          <figcaption class="flex flex-wrap items-center justify-between gap-3">
+            <span class="text-sm font-bold">${quote.source}</span>
+            <button type="button" onclick="openQuote(${idx})" aria-haspopup="dialog"
+              class="min-h-[44px] px-4 rounded-xl bg-white text-malcolm border-2 border-malcolm font-semibold hover:bg-malcolm hover:text-white transition-all cursor-pointer">
+              Proietta
+            </button>
+          </figcaption>
+        </figure>
+      `).join('');
+    }
+
+    function openQuote(idx) {
+      const quote = QUOTES[idx];
+      document.getElementById('quote-dialog-text').textContent = `«${quote.text}»`;
+      document.getElementById('quote-dialog-source').textContent = quote.source;
+      document.getElementById('quote-dialog-question').textContent = quote.question;
+      document.getElementById('quote-dialog').showModal();
+    }
+
+    /**
+     * SEZIONE 5: VERIFICA RAPIDA
+     */
+    function selectQuizSet(setKey) {
+      appState.quizSet = setKey;
+      ['1', '2', '3', 'link'].forEach(key => {
+        const btn = document.getElementById(`quiz-tab-${key}`);
+        setToggleStyle(btn, key === setKey);
+        btn.setAttribute('aria-pressed', String(key === setKey));
+      });
+      renderQuiz();
+    }
+
+    function answerQuiz(qIdx, optIdx) {
+      const key = `${appState.quizSet}-${qIdx}`;
+      if (appState.quizAnswers[key] !== undefined) return;
+      appState.quizAnswers[key] = optIdx;
+      renderQuiz();
+    }
+
+    function revealQuizSolutions() {
+      QUIZ_DATA[appState.quizSet].forEach((item, qIdx) => {
+        const key = `${appState.quizSet}-${qIdx}`;
+        if (appState.quizAnswers[key] === undefined) appState.quizAnswers[key] = -1;
+      });
+      renderQuiz();
+    }
+
+    function resetQuizSet() {
+      QUIZ_DATA[appState.quizSet].forEach((item, qIdx) => {
+        delete appState.quizAnswers[`${appState.quizSet}-${qIdx}`];
+      });
+      renderQuiz();
+    }
+
+    function renderQuiz() {
+      const questions = QUIZ_DATA[appState.quizSet];
+      let answered = 0;
+      let correct = 0;
+
+      document.getElementById('quiz-list').innerHTML = questions.map((item, qIdx) => {
+        const chosen = appState.quizAnswers[`${appState.quizSet}-${qIdx}`];
+        const isAnswered = chosen !== undefined;
+        if (chosen !== undefined && chosen >= 0) {
+          answered++;
+          if (chosen === item.answer) correct++;
+        }
+
+        const options = item.options.map((option, optIdx) => {
+          let style = 'bg-white border-dawn-border text-ink hover:border-malcolm hover:bg-malcolm-light/30 cursor-pointer';
+          let marker = '';
+          if (isAnswered) {
+            if (optIdx === item.answer) {
+              style = 'bg-emerald-50 border-emerald-700 text-emerald-900';
+              marker = '<span class="font-bold">Giusta</span>';
+            } else if (optIdx === chosen) {
+              style = 'bg-red-50 border-red-700 text-red-900';
+              marker = '<span class="font-bold">Sbagliata</span>';
+            } else {
+              style = 'bg-white border-dawn-border text-muted';
+            }
+          }
+          return `
+            <li>
+              <button type="button" onclick="answerQuiz(${qIdx}, ${optIdx})" ${isAnswered ? 'aria-disabled="true"' : ''}
+                class="w-full min-h-[56px] px-5 py-3 rounded-xl border-2 text-left text-lg font-semibold flex items-center justify-between gap-3 transition-all ${style}">
+                <span>${option}</span>${marker}
+              </button>
+            </li>`;
+        }).join('');
+
+        const feedback = isAnswered ? `
+          <div class="rounded-xl p-4 border ${
+            chosen === item.answer ? 'bg-emerald-50 border-emerald-700/40' : 'bg-paper border-dawn-border'
+          }">
+            <p class="text-ink"><strong>${
+              chosen === item.answer ? 'Esatto!' : (chosen === -1 ? 'Soluzione:' : 'Non proprio.')
+            }</strong> ${item.explain}</p>
+          </div>` : '';
+
+        return `
+          <li class="bg-white rounded-2xl p-6 sm:p-8 border border-dawn-border shadow-sm space-y-4">
+            <h2 class="font-serif text-xl sm:text-2xl font-bold text-malcolm flex gap-3">
+              <span class="w-9 h-9 rounded-full bg-malcolm text-white text-base font-bold flex items-center justify-center shrink-0 font-sans" aria-hidden="true">${qIdx + 1}</span>
+              <span>${item.q}</span>
+            </h2>
+            <ul class="grid grid-cols-1 md:grid-cols-${Math.min(item.options.length, 3)} gap-3">${options}</ul>
+            <div aria-live="polite">${feedback}</div>
+          </li>`;
+      }).join('');
+
+      document.getElementById('quiz-score').textContent = answered
+        ? `Risposte giuste: ${correct} su ${answered}`
+        : `${questions.length} domande`;
+    }
+
+    /**
+     * GLOSSARIO
+     */
+    function renderGlossary(highlightId) {
+      document.getElementById('glossary-list').innerHTML = GLOSSARY.map(entry => `
+        <div id="glossary-${entry.id}" class="rounded-xl border-2 p-5 ${
+          entry.id === highlightId ? 'border-maryjo bg-maryjo-light/60' : 'border-dawn-border bg-paper/40'
+        }">
+          <dt class="font-serif text-xl font-bold text-malcolm">${entry.term}</dt>
+          <dd class="text-ink mt-1 leading-relaxed">${entry.def}</dd>
+          <dd class="text-sm text-muted mt-2"><strong class="text-ink">Nel libro:</strong> ${entry.example}</dd>
+        </div>
+      `).join('');
+    }
+
+    function openGlossary(termId) {
+      renderGlossary(termId);
+      const dialog = document.getElementById('glossary-dialog');
+      dialog.showModal();
+      const target = termId && document.getElementById(`glossary-${termId}`);
+      if (target) target.scrollIntoView({ block: 'center' });
+    }
+
+    function closeDialog(id) {
+      document.getElementById(id).close();
+    }
+
+    /**
+     * SCHERMO INTERO E STAMPA
+     */
+    function toggleFullscreen() {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+    }
+
+    function updateFullscreenButton() {
+      const isFull = Boolean(document.fullscreenElement);
+      document.getElementById('btn-fullscreen').setAttribute('aria-pressed', String(isFull));
+      document.getElementById('fullscreen-label').textContent = isFull ? 'Esci da schermo intero' : 'Schermo intero';
+    }
+
+    function buildPrintSummary() {
+      const stories = [1, 2, 3].map(num => {
+        const part = STORIES_DATA[num];
+        return `
+          <section class="print-block">
+            <h2>${part.title}</h2>
+            <p><strong>${part.characters.malcolm.name}:</strong> ${part.characters.malcolm.temporalBadge}</p>
+            <p><strong>${part.characters.maryjo.name}:</strong> ${part.characters.maryjo.temporalBadge}</p>
+            <ol>${part.steps.map(step => `<li>${step.label}</li>`).join('')}</ol>
+          </section>`;
+      }).join('');
+
+      const glossary = GLOSSARY.map(entry => `<li><strong>${entry.term}:</strong> ${entry.def}</li>`).join('');
+      const threads = THREADS.map(thread => {
+        const parts = [1, 2, 3].filter(part => thread.parts[part]).join(', ');
+        return `<li><strong>${thread.label}</strong> (Parti ${parts})</li>`;
+      }).join('');
+
+      document.getElementById('print-summary').innerHTML = `
+        <h1>Tre volte all’alba — Alessandro Baricco</h1>
+        <p class="print-subtitle">Scheda di ripasso • 1A LES</p>
+        <section class="print-block">
+          <h2>Fabula e intreccio</h2>
+          <table>
+            <thead><tr><th>Parte (intreccio)</th><th>Malcolm</th><th>Mary Jo</th></tr></thead>
+            <tbody>
+              <tr><td>Parte 1</td><td>42 anni • presente narrativo</td><td>~42 anni • presente narrativo</td></tr>
+              <tr><td>Parte 2</td><td>60 anni • prolessi</td><td>16 anni • analessi</td></tr>
+              <tr><td>Parte 3</td><td>13 anni • analessi</td><td>56 anni • prolessi</td></tr>
+            </tbody>
+          </table>
+        </section>
+        ${stories}
+        <section class="print-block"><h2>Fili conduttori</h2><ul>${threads}</ul></section>
+        <section class="print-block"><h2>Glossario</h2><ul>${glossary}</ul></section>`;
+    }
+
+    function printSummary() {
+      buildPrintSummary();
+      window.print();
+    }
+
+    /**
      * INIZIALIZZAZIONE AL CARICAMENTO DELLA PAGINA
      */
     window.addEventListener('DOMContentLoaded', () => {
-      setFontSize('md');
-      switchMainSection('intro');
+      let savedFont = 'md';
+      try { savedFont = localStorage.getItem('tva-font-size') || 'md'; } catch (e) { /* nessuna preferenza */ }
+      setFontSize(['sm', 'md', 'lg'].includes(savedFont) ? savedFont : 'md');
+
       renderMeaningPoints();
       selectTimelineMode('1');
       selectStoryPart(1);
+      renderThreads();
+      renderQuotes();
+      selectQuizSet('1');
+      appState.currentSection = null;
+      routeFromHash(true);
+
+      window.addEventListener('hashchange', () => routeFromHash(false));
+      window.addEventListener('beforeprint', buildPrintSummary);
+      document.addEventListener('fullscreenchange', updateFullscreenButton);
+
+      document.addEventListener('click', event => {
+        const termBtn = event.target.closest('.term-btn');
+        if (termBtn) openGlossary(termBtn.dataset.term);
+      });
+
+      document.querySelectorAll('dialog').forEach(dialog => {
+        dialog.addEventListener('click', event => {
+          if (event.target === dialog) dialog.close();
+        });
+      });
+
+      document.addEventListener('keydown', event => {
+        if (appState.currentSection !== 'stories' || document.querySelector('dialog[open]')) return;
+        if (event.target.closest('input, textarea, select')) return;
+        if (event.key === 'ArrowRight') navigateStep(1);
+        if (event.key === 'ArrowLeft') navigateStep(-1);
+      });
     });
   </script>
 </body>
